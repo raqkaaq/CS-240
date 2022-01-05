@@ -1,0 +1,73 @@
+All methods in java are declared in a class. A nonstatic method is invoked by a call to an object of its class. Static methods such as main do not have objects.
+
+8 types: 4 signed integral, 2 floating point, char, boolean
+similar operators and structures to C and JavaScript
+Math class, String class
+System.out to display in terminal, Scanner tied to System.in to read from terminal
+
+main is a method declared innside a class as static and void.
+called like -> public static void main(String[] args){}
+
+a package is a set of related classes, it is usually a good idea to place every class into a package to avoid naming conflicts.
+
+System.out is an instance of a class called PrintStream with methods println, print etc.
+Invokine an instance method on a object uses form <object>.<method>(args)
+String has a method .length()
+class Random is used to generate random numbers, instantiate with 
+new Random()
+Random is included in the java.util package and is included with import java.util.Random
+
+Data Types:
+	signed types
+		byte -128 to 127
+		short -32768 to 32767
+		int (4 bytes) -2147482648 t0 2147482647
+		long (8 bytes)
+		(if long is too small, use BigInt)
+		float (4 bytes, 6-7 significant digits)
+		double (8 bytes, 15 significant digits)
+		char is normal
+		boolean is normal
+
+Variable declaration is same as c++
+	int total = 0;
+	int total = 0, count; //count is uninitialized
+	final int DAYS_PER_WEEK = 7; //final denotes a constant
+	can use public static final int DAYS_PER_WEEK = 7; to declare outside method
+
+Arithmetic Operators are same as c++
+	Math.pow(x,y) is x^y
+	Math.sqrt(x);
+	Math.PI Math.E
+	can use + to concatenate strings
+
+Scanner in = new Scanner(System.in);
+System.out.println("What is your name?");
+String name = in.nextLine(); //to get entire line
+Sting firstName = in.next(); //singleword delimited by whitespace
+String age = in.nextInt(); //reads integer
+import java.util.Scanner to use the scanner class
+
+Arrays declared by []
+	int[], String[]
+	to initialize use 
+	int[] vals = new int[100]; //access elements 0-99
+	can use .length
+	numeric types default to 0, bools to false, objects to null
+
+ArrayList<String> friends
+friends = new ArrayList<>();
+can use friends.add("Me");
+friends.remove(1);
+friends.add(0, "You"); //adds new head
+friends.get(0); //gets value
+friends.set(1,"Hey"); //replaces value at 1
+friends.size(); 
+!cant use primative types in <>, but can use wrapper classes Integer, Byte, Short. etc
+
+normal for loops, and enhanced
+	for(int n : numbers){} for array numbers
+
+InputStream in =  Files.newInputStream(path);
+OutputStream out = Files.newOutputStream(path);
+URL url = new URL("url here");

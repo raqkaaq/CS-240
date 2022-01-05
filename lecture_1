@@ -1,0 +1,12 @@
+1991 started project with Sun Microsystems
+	idea was cross-platform programming, wrote Java
+	2010 oracle bought Sun, and java
+
+Differences between Java and C++
+	built in garbage collection (deleting pointers)
+	Uses references instead of pointers
+	Data types are always the same size
+	specific boolean datatype, and constructs are made to use it
+	classes dynamically linked at runtime, no seperate link step
+	java is hybrid compiled/interpreted language
+	...
