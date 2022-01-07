@@ -27,5 +27,5 @@ public interface ISpellCorrector {
 	 * @param inputWord the word we are trying to find or find a suggestion for
 	 * @return the suggestion or null if there is no similar word in the dictionary
 	 */
-	String suggestSimilarWord(String inputWord);
+	String suggestSimilarWord(String inputWord) throws IOException;
 }
