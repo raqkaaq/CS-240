@@ -1,0 +1,30 @@
+
+/**
+ *This is the format for javadoc, just need to write the /**
+ */
+
+Will need to write javadoc for the family map server and client.
+
+Primative data types:
+	byte	
+	short	
+	int	
+	long	
+	float	
+	double	
+	char	
+	boolean	-true boolean
+	There is a wrapper class for each of the data types:
+		Byte
+		Short
+		Double
+		Long
+		Float
+		Double
+		Boolean
+	Converting string into int
+		int Integer.parseInt(String value); etc.
+	There are no unsigned datatypes in java	
+	In java you dont have to worry about destinguishing pointers, because everything is a pointer unless it is a primative data type
+	In java strings are immutable, you cannot change them. Everytime that it would change a string it creates another string.
+	All java classes inherit from class Object
