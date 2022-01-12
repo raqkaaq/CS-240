@@ -1,0 +1,59 @@
+HashTables:
+	Is a data structure that provides insert, find, and delete operatioons with amortized O(1) performance
+	It is used to implement "fast" sets and maps
+	Trades extra memory for increased speed
+	One of the most useful and important data structures
+
+	A hash table is just an array of values
+		wrap it in a class with insert, find, remove.
+	
+	hash.insert:
+		Doesnt matter what index is used as long as we can find it later
+		insert() calls o.hashCode() which returns an integer
+		insert() mods the hashCode() by the array size
+			int index = (o.hashCode() % hashTable.size();
+			hashTable[index] = o;
+		as long as o.hashCode() is fast, insert is also fast
+	hash.find:
+		find uses hashCode;
+			int index = (o.hashCode() % hashTable.size());
+			if(hashTable[index] == null) return false;
+			else return hashTable[index].equals(o);
+			//makes an assumption that o.hashCode() returns the same value everytime.
+		if o.hashCode() is fast, then find() is fast
+	hash.remove:
+		search the array to see if o is in the array
+		if it is, remove it
+	
+	A hash table is amortized to O(1) because it might need to rehash(make a new array) if too many values are added
+	
+
+	When writing a class, decide type of equality:
+		Identity equality: object is only equal to itself
+		Value equality: object is equal to any object with the same values
+	
+	When using Identity equaluty dont need to override equals() and hashCode()
+	To get value equality you need to override equals() and hashCode()
+		hashCode() returns an integer value derived from the values of the objects variables
+
+
+	Good hash functions:
+		Are fast
+		Always return the same value unless values change(mandatory)
+		random value that evenly distributes objects across hash table
+		for two objects equal to each other must be the same hash value(mandatory)
+		for objects not equal to each other return different hash codes to avoid collisions
+
+	handling collisions:
+		A collision is when two or more objects that are not .equals() return the same hash value.
+		Collisions can occur, so each element of the hash table is a list of objects called a bucket.
+		Ideally buckets have length 0 or 1
+		When the hash table gets too full(common collisions) the size of the hash table is increasted and the objects are re-hashed and moved to the new array
+	
+Static fields and variables:
+	using static members makes the member a variable on the class, not a variable of the class.
+	It is accessed as ClassName.staticVariable not Object.variable
+	Static methods are variables on the class as well, not on the objects
+	Static methods can only access static methods and static variables
+	
+	The main() function is static, so it cannot call nonstatic functions from inside the wrapper class, to get around this for class Class, inside main() declare Class class = new Class(); Now you can call Class().notstatic();

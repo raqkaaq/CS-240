@@ -1,0 +1,8 @@
+When using a static method like
+
+public class This{
+	static void something();
+}
+It can be called without an instance of an object in main.
+
+Interfaces are designed to be the way to interact with classes in a designated manner. You should have all the functionality of the custom class be called by the interfaces methods.
