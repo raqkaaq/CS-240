@@ -1,6 +1,20 @@
 import java.util.Objects;
 
 public class Book {
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Book book = (Book) o;
+        return pubYear == book.pubYear && Objects.equals(author, book.author) && Objects.equals(title, book.title) && genre == book.genre;
+    }
+
+    @Override
+    public int hashCode() {
+        return (this.author.hashCode() + this.title.hashCode()) * pubYear + genre.hashCode();
+        //Doesnt particularly matter the operations used, as long as each value is used, and you get more or less random numbers
+    }
+
     public static void main (String[] args){
         //call new everytime in creating a new object
         Book b1 = new Book("Raqkaaq", "Discovery of java", 2022, Genre.HISTORY);
@@ -10,32 +24,29 @@ public class Book {
         boolean bool2 = b1.equals(b2); //compare by value instead of by address
         System.out.println(bool);
         System.out.println(bool2);
+        System.out.println(b2.getClass());
 
     }
-
-    @Override
-    public int hashCode() {
-        return 0;
+    public static int nextID = 0;
+    private static int getNextID(){
+        return ++nextID;
     }
-
-    @Override
-    public boolean equals(Object o) {
-        if(o == null){
-            return false;
-        }
-        if(this == o){
-            return true;
-        }
-        if(this.getClass() != o.getClass()){
-            return false;
-        }
-        Book b = (Book) o;
-        return (this.author.equals(b.author) && this.title.equals(b.title) && (this.pubYear == b.pubYear) && this.genre.equals(b.genre));
-    }
-
+    private int id;
     private String author;
     private String title;
     private int pubYear;
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "id=" + id +
+                ", author='" + author + '\'' +
+                ", title='" + title + '\'' +
+                ", pubYear=" + pubYear +
+                ", genre=" + genre +
+                '}';
+    }
+
     private Genre genre;
 
     public Book(String author, String title, int pubYear, Genre genre) {

@@ -52,6 +52,9 @@ public class Trie implements ITrie{
      */
     @Override
     public INode find(String word) {
+        if(word.length() == 0){
+            return null;
+        }
         word = word.toLowerCase(Locale.ROOT);
         char currLetter;
         int index = 0; //initializing for the second to last line in this function
@@ -117,20 +120,35 @@ public class Trie implements ITrie{
     @Override
     public int hashCode() {
         int hash = 1;
-        INode root = this.root;
-        hash += hashHelper(root);
+        hash = endCount() + wordCount;
         return hash;
     }
-    public int hashHelper(INode node) {
-        int hash = 1;
-        for(int i = 0; i < 26; i++){
-            INode j = node.getChildren()[i];
-            if (j != null) {
-                hash += i + j.getValue();
-                if( j.getChildren() != null) hash *= hashHelper(j);
+
+    /**
+     * This function gets the count for the  closest ending word
+     * @return count
+     */
+    public int endCount(){
+        INode child = this.root;
+        int index = 1;
+        if(this.root.getValue() != 0){
+            return this.root.getValue();
+        } else {
+            while (child.getValue() == 0) {
+                for (int i = 0; i < 26; i++) {
+                    if (child.getValue() != 0) {
+                        index = i;
+                        break;
+                    }
+                    if (child.getChildren() != null) {
+                        if (child.getChildren()[i] != null) {
+                            child = child.getChildren()[i];
+                        }
+                    }
+                }
             }
         }
-        return hash;
+        return index;
     }
 
     @Override
@@ -147,7 +165,7 @@ public class Trie implements ITrie{
             output.append("\n");
         }
         for(int i = 0; i < root.getChildren().length; ++i){ //used root.getChildren length to avoid errors do to the child array not existing
-            TrieNode child = new TrieNode();
+            TrieNode child;
             if(n.getChildren() != null) {
                 child = (TrieNode) n.getChildren()[i];
             } else break;
