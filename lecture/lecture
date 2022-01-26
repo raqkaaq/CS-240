@@ -1,0 +1,65 @@
+Coding Exam due this week, notification on pass fail on friday by midnight.
+	2 page note sheet, anything generic works for syntax of java, show it on examity
+	Create the blank projects for both SpellingCorrector and EvilHangman
+
+
+Streams & Files
+	I/O overview
+		Streams -read and write files
+		Scanner -tokenize input
+		Files -read, copy whole class
+		RandomAccessFile -read and write anywhere in a file
+	File class represents, creates or deletes a file (doesnt edit)
+		File newFile = new File("filename.txt");
+		if(newFile.exists){}
+
+	Streams
+		wites and reads data from files, in byte or text formated data as bytes
+		InputStream and Output stream to create raw binary data
+		Reader and Writer classes for reading and writing text formated data
+		InputStream reads bytes sequentially from a data source
+			URLConnection.getInputStream()
+			HttpExchange.getRequestBody()
+			ResultSet.getBinaryStream(int column)
+			-
+			Can decompress data, decrypt data as it comes out of the stream
+			compute a digest of the stream(summerize data in stream)
+			byte counting, line counting
+			buffering- grabs an optimal amount of data from the disk, and grabs little bits as called in the program
+		OutputStream
+			URLConnection.getOutputStream
+			HttpExchange.getResponseBody()
+			can do encrypt, compress, buffer etc.
+		DataInputStream DataOutputStream
+			Use to write binary formatted data values
+			
+		Reader-	reades characters sequentially
+		Writer- writes characters sequentially
+			PrintWriter allows writing text
+			Scanner class reads text formatted data
+
+		Scanner Class:
+			Reads tokens one at a time from a source of characters, by default tokens are divided by whitespace (but can specity the delimit characters using regular expressions)
+
+		Files Class:
+			public List<String> readFile(File file) throws IOException {
+				Path path = Paths.get(file.getPath());
+				List<String>  fileContents = Files.readAllLines(path);
+				return fileContents;
+				//each line of the file is an element of the list
+				//Files is a wrapper class
+				//manipulates the file system
+			}
+
+
+Relational Databases
+	Databases implemented by Database management systems (DBMS)
+	store data in files in a way that scales to large amounts of data and can be accessed efficiently
+	programs can access a database using an API such as JDBC, users can access the database through a management console interactively
+	The program can have an embedded database, or a client server setup
+
+		Relations are tables
+		Tuples are Rows (i.e. an individual record)
+	Each row needs a primary key (unique identifier)
+		relationships between tables are represented using keys
+	All table definitions in a database make up the schema of the database

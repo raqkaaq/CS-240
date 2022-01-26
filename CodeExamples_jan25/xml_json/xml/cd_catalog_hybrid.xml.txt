@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<CATALOG>
+	<CD TITLE="Hide your heart" ARTIST="Bonnie Tyler">
+		<COUNTRY>UK</COUNTRY>
+		<COMPANY>CBS Records</COMPANY>
+		<PRICE>9.90</PRICE>
+		<YEAR>1988</YEAR>
+	</CD>
+	<CD TITLE="Greatest Hits" ARTIST="Dolly Parton">
+		<COUNTRY>USA</COUNTRY>
+		<COMPANY>RCA</COMPANY>
+		<PRICE>9.90</PRICE>
+		<YEAR>1982</YEAR>
+	</CD>
+	<CD TITLE="Still got the blues" ARTIST="Gary Moore">
+		<COUNTRY>UK</COUNTRY>
+		<COMPANY>Virgin records</COMPANY>
+		<PRICE>10.20</PRICE>
+		<YEAR>1990</YEAR>
+	</CD>
+</CATALOG>
