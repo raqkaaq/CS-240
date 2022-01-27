@@ -9,6 +9,11 @@ public class EvilHangmanGame implements IEvilHangmanGame{
         this.dictionary = dictionary;
     }
 
+    public boolean isCorrectGuess() {
+        return isCorrectGuess;
+    }
+
+    private boolean isCorrectGuess;
     private Set<String> dictionary;
     private int wordLength;
     private SortedSet<Character> guesses;
@@ -22,6 +27,7 @@ public class EvilHangmanGame implements IEvilHangmanGame{
     }
     @Override
     public void startGame(File dictionary, int wordLength) throws IOException, EmptyDictionaryException {
+        this.isCorrectGuess = false;
         this.wordLength = wordLength;
         this.guesses = new TreeSet<>();
         String a = "-";
@@ -43,6 +49,7 @@ public class EvilHangmanGame implements IEvilHangmanGame{
 
     @Override
     public Set<String> makeGuess(char guess) throws GuessAlreadyMadeException {
+        this.isCorrectGuess = false;
         this.partitions = new HashMap<>();
         if(guesses.contains(Character.toLowerCase(guess)))
             throw new GuessAlreadyMadeException(guess);
@@ -85,6 +92,9 @@ public class EvilHangmanGame implements IEvilHangmanGame{
              StringBuilder tempKey = new StringBuilder(key);
              //gets count of chars same as guess in key
              count = (int)tempKey.chars().filter(ch -> ch == guess).count();
+             if(count != 0){
+                 isCorrectGuess = true;
+             }
              int index = tempKey.toString().indexOf(guess);
              while(index != -1){
                  tempKey.setCharAt(index, '*');
