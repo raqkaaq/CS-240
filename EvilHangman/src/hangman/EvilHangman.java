@@ -15,7 +15,6 @@ public class EvilHangman {
         evil.startGame(dictionary, wordCount);
         while(guesses > 0) {
             System.out.println("You have " + guesses + " guesses left");
-            guesses -= 1;
             System.out.print("Used letters:");
             if (!evil.getGuessedLetters().isEmpty()) {
                 Iterator<Character> it = evil.getGuessedLetters().iterator();
@@ -25,12 +24,21 @@ public class EvilHangman {
             }
             System.out.print('\n');
             System.out.println("Word: " + evil.getWord());
+            if(evil.getWord().indexOf('-') == -1){
+                System.out.println("You won the game!!");
+                break;
+            }
             System.out.print("Enter guess: ");
             Scanner scan = new Scanner(System.in);
             char guess = scan.next().charAt(0);
             if (evil.isLetter(guess)) {
-                evil.makeGuess(Character.toLowerCase(guess));
-                System.out.println("This is the answer spot\n");
+                try {
+                    evil.makeGuess(Character.toLowerCase(guess));
+                    if(!evil.isCorrectGuess())
+                        guesses -= 1;
+                } catch (GuessAlreadyMadeException e){
+                    System.out.println("Guess already made");
+                }
             } else {
                 System.out.println("Invalid Input");
                 continue;
