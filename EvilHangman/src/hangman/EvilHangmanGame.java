@@ -14,6 +14,11 @@ public class EvilHangmanGame implements IEvilHangmanGame{
     }
 
     private boolean isCorrectGuess;
+
+    public Set<String> getDictionary() {
+        return dictionary;
+    }
+
     private Set<String> dictionary;
     private int wordLength;
     private SortedSet<Character> guesses;
@@ -31,7 +36,7 @@ public class EvilHangmanGame implements IEvilHangmanGame{
         this.wordLength = wordLength;
         this.guesses = new TreeSet<>();
         String a = "-";
-        this.word = a.repeat(wordLength + 1);
+        this.word = a.repeat(wordLength);
         if (dictionary.length() == 0)
             throw new EmptyDictionaryException();
         Scanner scan = new Scanner(dictionary);

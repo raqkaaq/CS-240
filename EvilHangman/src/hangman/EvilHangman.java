@@ -28,7 +28,7 @@ public class EvilHangman {
                 System.out.println("You won the game!!");
                 break;
             }
-            System.out.print("Enter guess: ");
+            System.out.print("\nEnter guess: ");
             Scanner scan = new Scanner(System.in);
             char guess = scan.next().charAt(0);
             if (evil.isLetter(guess)) {
@@ -42,6 +42,10 @@ public class EvilHangman {
             } else {
                 System.out.println("Invalid Input");
                 continue;
+            }
+            if(guesses == 0 && evil.getWord().indexOf('-') != -1){
+                System.out.println("You lose!");
+                System.out.println("The word was " + evil.getDictionary().iterator().next() + "!");
             }
         }
     }
