@@ -1,0 +1,124 @@
+Relational Databases
+
+	Many to Many realtionships
+		create a seperate table that contains the primary keys of the two parent tables to demonstrate this
+		create a join (intersecting entity) whose rows contain forwign keys of both tables/ (the most effiecient way to represent it
+	many to one relationships
+		the many stores the one as a foreign key
+		A book has one category, but a category has many books
+			the book table contains a foreign key referencing the category
+	one to one relationships
+		normally is in the same table, or either contains a foreign key to the other table
+		A person has one head, head belongs to one person
+		
+
+	ERD 
+	
+	|name| - | - O< |cheese|
+	fields		 fields
+
+	the | represents how many cheeses each name has
+	the O< represents how many names each cheese has
+	see the powerpoint relationaldatabases in inClass
+	
+
+UML
+	Inheritance is a solid line with an unfilled triangle pointing to the parent class
+	A dashed line represents an interface
+
+Representing Inheritance in data in a database:
+	Horizontal partitioning
+		every concrete class that contains data is mapped to a table
+		is a valid way to represent data, but could take a long time to query data for parent class
+		no unecessary fields, acts as if it removes inheritance
+	Vertical Partitioning
+		Every class is mapped to a table
+			child classes have a foreign key that points to the parent class
+			works okay, but searching for data in child is resource consuming
+		must join several tables to activate object
+		preserves inheritance
+	Unification
+		each child class is mapped to the same table
+		all data members of every child class is stored
+		if a data member doesnt apply to the object then leave it null
+			queries are very quick, but considerably more disk space is used
+			space vs. speed
+
+	The three methods can be used together
+	
+
+SQL
+	database operations:
+		create/delete tables
+		insert/update/delete rows
+		query matching rows
+	SQL data types: (is a typed language)
+		Character:
+			CHAR(n): fixed length string with space padding not common
+			VARCHAR(n): variable width string with maximum size of n characters
+			CHAR(n) are faster, VARCHAR(n) is more storage effiecient
+		Bit Strings:
+			BIT(n) and BIT VARYING(n)
+
+		Numerical Types:
+			INTEGER and SMALLINT
+			FLOAT, REAL, DOUBLE PRECISION
+			NUMERIC(precision, scale) or DECIMAL(precision, scale) less preformant
+			BLOB: binary large object (image, sound, video)
+			CLOB: characher large object (text documents)
+			Usually use VARCHAR(n) to represent path to the file rather than BLOB and CLOB
+		Date and Time:
+			DATE: date values (2011-05-03)
+			TIME: time values (15:51:36)
+			TIMETZ: includes timezone details
+			TIMESTAMP : date and time put together
+	
+	SQLite DataTypes
+		INTEGER, REAL, TEXT, BLOB
+		all standard sql data types are mapped into those 4
+		
+
+	Creating Tables:
+		CREATE TABLE table_name {
+			(name type modifiers_in_any_order)
+			key_id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+			data_name VARCHAR(255) NOT NULL,
+			data_2 VARCHAR(255),
+			data_3 VARCHAR(255) NOT NULL UNIQUE,
+			FOREIGN KEY(other_key) REFERENCES other_table(other_key)
+		}
+		AUTOINCREMENT increments the id using an internal counter
+		PRIMARY KEY forces it to be UNIQUE
+		Datatypes are defaulted to allow NULL, use NOT NULL to force it to have a value
+		UNIQUE forces every value of this data field to be UNIQUE
+		FOREIGN KEY(table_data) REFERENCES table(data) adds a field of name table_data that is a value from other_table labeled data. It is a foreign key constraint that forces it to have data integrity
+		Can query without foreign key constraints
+			but they force values to be from the foreign table
+			disallows deletes of parent table when referenced in a foreign table
+			disallows updates of a parent row that would orphan the fields referenced
+			Available actions:
+				ON UPDATE action
+				ON DELETE action
+				actions:
+					NO ACTION
+					RESTRICT: disables action
+					SET NULL: sets to null if allowed
+					SET DEFAULT: sets to a default value
+					CASCADE: propogate change to reference table
+				default action is
+					ON UPDATE CASCADE ON DELETE RESTRICT
+
+	Dropping Tables:
+		DROP TABLE table_name;
+		DROP TABLE IF EXISTS table_name;
+			when using foreign keys, the order of deletes matters, parent tables need to be deleted first
+		SQL does not allow circular references (a parent is a child of its child or childs children)
+
+	Inserting data into Tables
+		INSERT INTO table_name(key_id, data_name, data_2, data_3, other_key) VALUES (1, 'stuff', 'other', 'not', 3);
+	Updating data in tables
+		UPDATE table_name SET column=value, column2=value2 WHERE column=value (condition)
+		 where clause can use relations =, <, > , >=, <=, <>, BETWEEN, LIKE, IN
+	Deleting rows from table
+		DELETE FROM table_name WHERE condition
+
