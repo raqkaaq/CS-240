@@ -7,7 +7,6 @@ import java.io.IOException;
  * used by the passoff program.
  */
 public class Main {
-	
 	/**
 	 * Give the dictionary file name as the first argument and the word to correct
 	 * as the second argument.
@@ -20,7 +19,7 @@ public class Main {
 		//
         //Create an instance of your corrector here
         //
-		ISpellCorrector corrector = null;
+		ISpellCorrector corrector = new SpellCorrector();
 		
 		corrector.useDictionary(dictionaryFileName);
 		String suggestion = corrector.suggestSimilarWord(inputWord);
