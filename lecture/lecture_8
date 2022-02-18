@@ -1,0 +1,71 @@
+HTTP protocol
+
+protocol: http or https
+domain name: www.google.com
+port number: :443
+path: some/path/to/somewhere
+
+http defaults to port 80
+https defaults to port 443
+ports are in the range 1-65535
+
+A url gets translated into an GET request
+connects to domain on port
+GET <url path> HTTP/1.1 (HTTP version)
+Some groups of headers
+completely optional
+Accept: some file types
+headers are optional, and there can be as many as you want, but it is up to the server to handle them
+
+Get response
+
+HTTP/1.1 200 OK (http version statuscode reason phrase)
+Headers
+empty line
+response body
+
+400 client error
+500 server error
+200 status ok
+418 I am a teapot
+
+POST request
+
+POST <url path> HTTP/1.1 (http version)
+Headers
+empty line
+request body
+
+POST response
+
+HTTP/1.1 200 OK
+headers
+empty line
+response body
+
+For the server will use authorization as a header
+
+Call to server
+GET /event/12345 HTTP/1.1
+Authorization: somestring
+
+result
+HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 2342
+
+json with event data
+
+Post call to server
+POST /login HTTP/1.1
+Content-Type: application/json
+Content-Length: 34
+
+json string
+
+Post response
+HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 2434
+
+json string
