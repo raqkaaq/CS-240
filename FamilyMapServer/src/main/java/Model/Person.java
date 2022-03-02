@@ -125,6 +125,17 @@ public class Person {
         this.spouseID = spouseID;
     }
 
+    public Person(User u){
+        this.personID = u.getPersonID();
+        this.associatedUsername = u.getUsername();
+        this.firstName = u.getFirstName();
+        this.lastName = u.getLastName();
+        this.gender = u.getGender();
+        this.fatherID = new String();
+        this.motherID = new String();
+        this.spouseID = new String();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -136,5 +147,26 @@ public class Person {
     @Override
     public int hashCode() {
         return Objects.hash(personID, associatedUsername, firstName, lastName, gender, fatherID, motherID, spouseID);
+    }
+    @Override
+    public String toString() {
+        StringBuilder s = new StringBuilder();
+        s.append(personID);
+        s.append('\n');
+        s.append(associatedUsername);
+        s.append('\n');
+        s.append(firstName);
+        s.append('\n');
+        s.append(lastName);
+        s.append('\n');
+        s.append(gender);
+        s.append('\n');
+        s.append(fatherID);
+        s.append('\n');
+        s.append(motherID);
+        s.append('\n');
+        s.append(spouseID);
+        s.append('\n');
+        return s.toString();
     }
 }

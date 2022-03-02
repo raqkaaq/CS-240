@@ -1,5 +1,7 @@
 package Result;
 
+import java.util.Objects;
+
 /**
  * A class that models the login json result
  */
@@ -41,6 +43,9 @@ public class LoginResult extends Result{
         this.personID = personID;
     }
 
+    public void setAuthToken(String authToken) {
+        this.authToken = authToken;
+    }
     public String getAuthToken() {
         return authToken;
     }
@@ -51,5 +56,18 @@ public class LoginResult extends Result{
 
     public String getPersonID() {
         return personID;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        LoginResult that = (LoginResult) o;
+        return Objects.equals(authToken, that.authToken) && Objects.equals(username, that.username) && Objects.equals(personID, that.personID) && Objects.equals(getMessage(), that.getMessage());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(authToken, username, personID);
     }
 }

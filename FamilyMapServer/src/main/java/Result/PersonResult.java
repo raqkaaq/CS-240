@@ -3,6 +3,7 @@ package Result;
 import Model.Person;
 
 import java.util.List;
+import java.util.Objects;
 
 /**
  * A class that models the person json result
@@ -32,5 +33,18 @@ public class PersonResult extends Result{
 
     public List<Person> getPersons() {
         return persons;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        PersonResult that = (PersonResult) o;
+        return Objects.equals(getPersons(), that.getPersons());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getPersons());
     }
 }

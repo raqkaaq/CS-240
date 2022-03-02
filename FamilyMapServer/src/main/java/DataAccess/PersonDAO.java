@@ -8,6 +8,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A class that passes a Person into the database
@@ -74,6 +76,39 @@ public class PersonDAO {
             throw new DataAccessException("Error encountered while finding person");
         } finally {
             if(rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+
+        }
+        return null;
+    }
+
+    public List<Person> getAllPersons(String username) throws DataAccessException {
+        List<Person> persons = null;
+        ResultSet rs = null;
+        String sql = "SELECT * FROM person WHERE associatedUsername = ?;";
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, username);
+            rs = stmt.executeQuery();
+            while (rs.next()) {
+                if(persons == null)
+                    persons = new ArrayList<>();
+                Person person = new Person(rs.getString("personID"), rs.getString("associatedUsername"),
+                        rs.getString("firstname"), rs.getString("LastName"), rs.getString("gender"), rs.getString("fatherid"),
+                        rs.getString("motherid"), rs.getString("spouseid"));
+                persons.add(person);
+            }
+            if(persons != null)
+                return persons;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new DataAccessException("Error encountered while finding event");
+        } finally {
+            if (rs != null) {
                 try {
                     rs.close();
                 } catch (SQLException e) {

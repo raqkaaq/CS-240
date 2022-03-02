@@ -123,4 +123,24 @@ public class User {
     public int hashCode() {
         return Objects.hash(username, password, email, firstName, lastName, gender, personID);
     }
+
+    @Override
+    public String toString() {
+        StringBuilder s = new StringBuilder();
+        s.append(username);
+        s.append('\n');
+        s.append(password);
+        s.append('\n');
+        s.append(email);
+        s.append('\n');
+        s.append(firstName);
+        s.append('\n');
+        s.append(lastName);
+        s.append('\n');
+        s.append(gender);
+        s.append('\n');
+        s.append(personID);
+        s.append('\n');
+        return s.toString();
+    }
 }

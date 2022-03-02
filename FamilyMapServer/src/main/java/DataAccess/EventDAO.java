@@ -1,11 +1,14 @@
 package DataAccess;
 
 import Model.Event;
+import Model.Person;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 /**
@@ -34,7 +37,7 @@ public class EventDAO {
     public void insert(Event event) throws DataAccessException {
         //We can structure our string to be similar to a sql command, but if we insert question
         //marks we can change them later with help from the statement
-        String sql = "INSERT INTO Events (EventID, AssociatedUsername, PersonID, Latitude, Longitude, " +
+        String sql = "INSERT INTO event (EventID, AssociatedUsername, PersonID, Latitude, Longitude, " +
                 "Country, City, EventType, Year) VALUES(?,?,?,?,?,?,?,?,?)";
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
             //Using the statements built-in set(type) functions we can pick the question mark we want
@@ -55,6 +58,11 @@ public class EventDAO {
             throw new DataAccessException("Error encountered while inserting into the database");
         }
     }
+    public void insert(List<Event> list) throws DataAccessException {
+        for(int i = 0; i < list.size(); i++){
+            insert(list.get(i));
+        }
+    }
 
     /**
      * Searches for an event with eventID in the database
@@ -65,7 +73,7 @@ public class EventDAO {
     public Event find(String eventID) throws DataAccessException {
         Event event;
         ResultSet rs = null;
-        String sql = "SELECT * FROM Events WHERE EventID = ?;";
+        String sql = "SELECT * FROM event WHERE EventID = ?;";
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, eventID);
             rs = stmt.executeQuery();
@@ -91,22 +99,25 @@ public class EventDAO {
         }
         return null;
     }
+
     public List<Event> getAllEvents(String username) throws DataAccessException {
         List<Event> events = null;
         ResultSet rs = null;
-        String sql = "SELECT * FROM Events WHERE username = ?;";
+        String sql = "SELECT * FROM event WHERE associatedUsername = ?;";
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, username);
             rs = stmt.executeQuery();
             while (rs.next()) {
-                Event event = null;
-                event = new Event(rs.getString("EventID"), rs.getString("AssociatedUsername"),
+                if(events == null)
+                    events = new ArrayList<>();
+                Event event = new Event(rs.getString("EventID"), rs.getString("AssociatedUsername"),
                         rs.getString("PersonID"), rs.getFloat("Latitude"), rs.getFloat("Longitude"),
                         rs.getString("Country"), rs.getString("City"), rs.getString("EventType"),
                         rs.getInt("Year"));
                 events.add(event);
-                return events;
             }
+            if(events != null)
+                return events;
         } catch (SQLException e) {
             e.printStackTrace();
             throw new DataAccessException("Error encountered while finding event");
@@ -121,5 +132,13 @@ public class EventDAO {
 
         }
         return null;
+    }
+    /**
+     * Deletes data from event table
+     * @return boolean to signify if the action was successful
+     * @throws DataAccessException
+     */
+    public boolean clear() throws DataAccessException {
+        return Database.clear("event", conn);
     }
 }

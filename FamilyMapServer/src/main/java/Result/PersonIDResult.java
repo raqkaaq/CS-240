@@ -1,5 +1,7 @@
 package Result;
 
+import java.util.Objects;
+
 /**
  * A class that models the person id json result
  */
@@ -94,5 +96,18 @@ public class PersonIDResult extends Result{
 
     public String getSpouse() {
         return spouse;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        PersonIDResult that = (PersonIDResult) o;
+        return Objects.equals(username, that.username) && Objects.equals(personID, that.personID) && Objects.equals(firstName, that.firstName) && Objects.equals(lastName, that.lastName) && Objects.equals(gender, that.gender) && Objects.equals(father, that.father) && Objects.equals(mother, that.mother) && Objects.equals(spouse, that.spouse) && Objects.equals(getMessage(), that.getMessage());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(username, personID, firstName, lastName, gender, father, mother, spouse);
     }
 }

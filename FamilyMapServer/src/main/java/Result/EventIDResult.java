@@ -1,5 +1,7 @@
 package Result;
 
+import java.util.Objects;
+
 /**
  * A class that models the event id json result
  */
@@ -108,5 +110,18 @@ public class EventIDResult extends Result{
 
     public int getYear() {
         return year;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        EventIDResult that = (EventIDResult) o;
+        return Float.compare(that.getLatitude(), getLatitude()) == 0 && Float.compare(that.getLongitude(), getLongitude()) == 0 && getYear() == that.getYear() && Objects.equals(getUsername(), that.getUsername()) && Objects.equals(getEventID(), that.getEventID()) && Objects.equals(getPersonID(), that.getPersonID()) && Objects.equals(getCountry(), that.getCountry()) && Objects.equals(getCity(), that.getCity()) && Objects.equals(getEventType(), that.getEventType()) && Objects.equals(getMessage(), that.getMessage());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getUsername(), getEventID(), getPersonID(), getLatitude(), getLongitude(), getCountry(), getCity(), getEventType(), getYear());
     }
 }

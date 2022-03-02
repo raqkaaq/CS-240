@@ -3,7 +3,7 @@ package Request;
 /**
  * A class that models the event ID json request
  */
-public class eventIDRequest {
+public class EventIDRequest {
     /**
      * An event id
      */
@@ -18,7 +18,7 @@ public class eventIDRequest {
      * @param eventID
      * @param authToken
      */
-    public eventIDRequest(String eventID, String authToken) {
+    public EventIDRequest(String eventID, String authToken) {
         this.eventID = eventID;
         this.authToken = authToken;
     }

@@ -1,10 +1,8 @@
 package DataAccess;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.sql.PreparedStatement;
+import com.sun.net.httpserver.Authenticator;
+
+import java.sql.*;
 
 /**
  * A class that connects with the database
@@ -119,5 +117,20 @@ public class Database {
             //throw new DataAccessException("SQL Error encountered while clearing tables");
         }
         return true;
+    }
+
+    public static int count(String table, Connection conn) throws DataAccessException{
+        String sql = "SELECT COUNT(*) AS count FROM " + table + ";";
+        try {
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            ResultSet rs = stmt.executeQuery();
+            if(rs.next()){
+                return rs.getInt("count");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            //throw new DataAccessException("SQL Error encountered while clearing tables");
+        }
+        return 0;
     }
 }

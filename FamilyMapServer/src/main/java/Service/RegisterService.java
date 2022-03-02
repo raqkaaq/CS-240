@@ -1,5 +1,7 @@
 package Service;
 
+import DataAccess.DataAccessException;
+import DataAccess.Database;
 import Request.RegisterRequest;
 import Result.RegisterResult;
 
@@ -17,6 +19,12 @@ public class RegisterService {
      * @param req a register request
      */
     public RegisterService(RegisterRequest req){
+        Database db = new Database();
+        try{
+            db.openConnection();
+        } catch (DataAccessException e) {
+            e.printStackTrace();
+        }
 
     }
 

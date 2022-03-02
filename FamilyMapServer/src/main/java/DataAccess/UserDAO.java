@@ -2,10 +2,8 @@ package DataAccess;
 
 import Model.User;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.Locale;
 
 /**
  * A class that passes a User into the database
@@ -65,6 +63,8 @@ public class UserDAO {
         //marks we can change them later with help from the statement
         String sql = "INSERT INTO user (username, password, email, firstName, lastName, " +
                 "gender, personID) VALUES(?,?,?,?,?,?,?)";
+        if(!user.getGender().toLowerCase(Locale.ROOT).equals("f") && !user.getGender().toLowerCase(Locale.ROOT).equals("m"))
+            throw new DataAccessException("Gender not in correct format");
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
             //Using the statements built-in set(type) functions we can pick the question mark we want
             //to fill in and give it a proper value. The first argument corresponds to the first
@@ -118,7 +118,26 @@ public class UserDAO {
         return null;
     }
 
-    /**
+    public void deleteUser(String username) {
+        String sql1 = "DELETE FROM event WHERE associatedUsername = ?;";
+        String sql2 = "DELETE FROM person WHERE associatedUsername = ?;";
+        String sql3 = "DELETE FROM user WHERE username = ?;";
+        try {
+            PreparedStatement stmt = conn.prepareStatement(sql1);
+            stmt.setString(1, username);
+            stmt.executeUpdate();
+            stmt = conn.prepareStatement(sql2);
+            stmt.setString(1, username);
+            stmt.executeUpdate();
+            stmt = conn.prepareStatement(sql3);
+            stmt.setString(1, username);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+        /**
      * Deletes data from user table
      * @return boolean to signify if the action was successful
      * @throws DataAccessException

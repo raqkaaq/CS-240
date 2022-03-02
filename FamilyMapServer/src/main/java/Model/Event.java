@@ -1,6 +1,13 @@
 package Model;
 
+import Data.FillData;
+import Data.LocationArray;
+import Data.LocationData;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
+import java.util.UUID;
 
 /**
  * A class that models the event table in the database

@@ -3,7 +3,7 @@ package Request;
 /**
  * A class that models the person and person idjson request
  */
-public class personIDRequest {
+public class PersonIDRequest {
     /**
      * A person id
      */
@@ -18,7 +18,7 @@ public class personIDRequest {
      * @param personID
      * @param authToken
      */
-    public personIDRequest(String personID, String authToken) {
+    public PersonIDRequest(String personID, String authToken) {
         this.personID = personID;
         this.authToken = authToken;
     }

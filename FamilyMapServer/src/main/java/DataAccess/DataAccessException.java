@@ -8,7 +8,7 @@ public class DataAccessException extends Exception {
      * A constructor that adds a message to the exception
      * @param message a message
      */
-    DataAccessException(String message)
+    public DataAccessException(String message)
     {
         super(message);
     }

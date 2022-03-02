@@ -3,6 +3,8 @@ package Result;
 import Model.Event;
 
 import java.util.List;
+import java.util.Objects;
+
 /**
  * A class that models the event result json
  */
@@ -31,5 +33,18 @@ public class EventResult extends Result{
 
     public List<Event> getEvent() {
         return event;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        EventResult that = (EventResult) o;
+        return Objects.equals(getEvent(), that.getEvent());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getEvent());
     }
 }
