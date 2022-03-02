@@ -6,7 +6,6 @@ import DataAccess.Database;
 import DataAccess.EventDAO;
 import Model.AuthToken;
 import Result.EventResult;
-import Request.EventIDRequest;
 
 import java.sql.Connection;
 

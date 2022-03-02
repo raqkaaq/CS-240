@@ -26,6 +26,7 @@ public class EventDAOTest {
     @BeforeEach
     public void setup() throws DataAccessException {
         conn = data.openConnection();
+        data.clearTables();
     }
 
     @AfterEach

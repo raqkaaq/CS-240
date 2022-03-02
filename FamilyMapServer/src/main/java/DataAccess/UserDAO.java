@@ -126,12 +126,12 @@ public class UserDAO {
             PreparedStatement stmt = conn.prepareStatement(sql1);
             stmt.setString(1, username);
             stmt.executeUpdate();
-            stmt = conn.prepareStatement(sql2);
-            stmt.setString(1, username);
-            stmt.executeUpdate();
-            stmt = conn.prepareStatement(sql3);
-            stmt.setString(1, username);
-            stmt.executeUpdate();
+            PreparedStatement stmt1 = conn.prepareStatement(sql2);
+            stmt1.setString(1, username);
+            stmt1.executeUpdate();
+            PreparedStatement stmt2 = conn.prepareStatement(sql3);
+            stmt2.setString(1, username);
+            stmt2.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
