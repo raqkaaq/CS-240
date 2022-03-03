@@ -25,29 +25,29 @@ public class EventHandler implements HttpHandler {
                 if (exchange.getRequestHeaders().containsKey("Authorization")) {
                     String auth = exchange.getRequestHeaders().getFirst("Authorization");
                     String url = exchange.getRequestURI().toString();
-                    args = HandlerPack.parseUrl(url);
-                    if (args.length != 2 && args.length != 1) {
+                    args = HandlerPack.parseUrl(url); //Uses the parseUrl to parse the string into an array
+                    if (args.length != 2 && args.length != 1) { //if the args length isnt 1 or 2 then there are too many parameters bad request
                         exchange.sendResponseHeaders(HttpURLConnection.HTTP_BAD_REQUEST, 0);
                         Result res = new Result("Invalid number of parameters", false);
                         HandlerPack.write(exchange, res);
-                    } else if (args.length == 2) {
+                    } else if (args.length == 2) { //If there are 2 args, then one is the 'event' and the other is automatically considered an eventID so
                         EventIDRequest req = new EventIDRequest(args[1], auth);
-                        EventIDService serv = new EventIDService(req);
+                        EventIDService serv = new EventIDService(req); //call the eventIdService with the request to check the authentication
                         res1 = serv.post();
-                        if (res1.getSuccess()) {
+                        if (res1.getSuccess()) { //if the result of the service returns a success result, pass it to the client
                             exchange.sendResponseHeaders(HttpURLConnection.HTTP_OK, 0);
                             HandlerPack.write(exchange, res1);
-                        } else {
+                        } else { //if there wasnt a success, pass the failed result with the failed message to the server
                             exchange.sendResponseHeaders(HttpURLConnection.HTTP_BAD_REQUEST, 0);
                             HandlerPack.write(exchange, res1);
                         }
-                    } else {
-                        EventService serv = new EventService(auth);
+                    } else { //if the args contains only one arguement, then it must be 'event'
+                        EventService serv = new EventService(auth); //Call EventService to authenticate
                         res = serv.post();
-                        if (res.getSuccess()) {
+                        if (res.getSuccess()) { //if successful return to client the success result
                             exchange.sendResponseHeaders(HttpURLConnection.HTTP_OK, 0);
                             HandlerPack.write(exchange, res);
-                        } else {
+                        } else { //if not successful, return the result to the client
                             exchange.sendResponseHeaders(HttpURLConnection.HTTP_BAD_REQUEST, 0);
                             HandlerPack.write(exchange, res);
                         }

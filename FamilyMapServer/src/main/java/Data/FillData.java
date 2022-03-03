@@ -12,6 +12,7 @@ public class FillData {
     List<Names> mnames;
     List<Names> fnames;
     List<Names> snames;
+    //constructor gets json fill data from locations.json, m(s,f)names.json for use in fill and register classes
     public FillData() throws FileNotFoundException {
         Gson gson = new Gson();
         locations = new ArrayList<>();
@@ -22,7 +23,7 @@ public class FillData {
         for (int i = 0; i < 978; i++) {
             locations.add(temp.getData()[i]);
         }
-        NameArray nameTemp = new NameArray(144);
+        NameArray nameTemp = new NameArray(144);//a default temporary array for parsing the json
         nameTemp = gson.fromJson(new FileReader("json/mnames.json"), NameArray.class);
         for (int i = 0; i < 144; i++) {
             mnames.add(new Names(nameTemp.data[i]));

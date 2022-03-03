@@ -29,8 +29,9 @@ public class EventService {
             AuthTokenDAO authd = new AuthTokenDAO(conn);
             EventDAO ed = new EventDAO(conn);
             AuthToken auth = authd.find(req);
-            if(auth != null){
+            if(auth != null){ //has authorization
                 events = new EventResult(ed.getAllEvents(auth.getUserName()));
+                //returns all events with the username
             } else {
                 throw new DataAccessException("error Invalid authorization: You do not have access to this resource");
             }

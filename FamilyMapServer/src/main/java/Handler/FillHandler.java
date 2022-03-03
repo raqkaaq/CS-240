@@ -25,25 +25,19 @@ public class FillHandler implements HttpHandler {
             if(exchange.getRequestMethod().toLowerCase(Locale.ROOT).equals("post")){
                 String url = exchange.getRequestURI().toString();
                 args = HandlerPack.parseUrl(url);
-                if(args.length <= 1 || args.length > 3){
+                if(args.length <= 1 || args.length > 3){ //verifies that there are the required number of arguements
                     message = "Invalid number of arguments";
                 } else {
                     String user = args[1];
-                    if(args.length == 3){
-                        try {
-                            generations = args[2];
-                            success = true;
-                        } catch (NumberFormatException e) {
-                            message = "Invalid generations";
-                            success = false;
-                        }
+                    if(args.length == 3) { //grab the third arguement
+                        generations = args[2];
+                        success = true;
                     }
                     if(success){
-                        FillRequest req = new FillRequest(user, generations);
-                        FillService fill = new FillService(req);
-                        fill.fillRun();
+                        FillRequest req = new FillRequest(user, generations); //make a new request, will throw error if the generations arent right
+                        FillService fill = new FillService(req); //call the FillService
+                        fill.fillRun(); //Fill in the data on the fill service
                         res = fill.post();
-
                     }
                 }
             }

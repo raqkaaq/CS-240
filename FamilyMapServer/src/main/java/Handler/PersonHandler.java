@@ -24,15 +24,15 @@ public class PersonHandler implements HttpHandler {
         try{
             if(exchange.getRequestMethod().toLowerCase(Locale.ROOT).equals("get")){
                 if(exchange.getRequestHeaders().containsKey("Authorization")){
-                    String auth = exchange.getRequestHeaders().getFirst("Authorization");
+                    String auth = exchange.getRequestHeaders().getFirst("Authorization"); //checks if the request requires authorization
                     String url = exchange.getRequestURI().toString();
                     args = HandlerPack.parseUrl(url);
-                    if(args.length > 2 || args.length < 1){
+                    if(args.length > 2 || args.length < 1){ //verifies the correct number of arguements
                         Result res = new Result("Invalid number of arguments", false);
                         exchange.sendResponseHeaders(HttpURLConnection.HTTP_BAD_REQUEST, 0);
                         HandlerPack.write(exchange, res);
-                    } else if(args.length == 2){
-                        PersonIDRequest req = new PersonIDRequest(args[1], auth);
+                    } else if(args.length == 2){ //if there are two arguements the are 'person' and assumed to be a personid
+                        PersonIDRequest req = new PersonIDRequest(args[1], auth); //check authorization and generate a request
                         PersonIDService serv = new PersonIDService(req);
                         res = serv.post();
                         if(res.getSuccess()){
@@ -42,8 +42,8 @@ public class PersonHandler implements HttpHandler {
                             exchange.sendResponseHeaders(HttpURLConnection.HTTP_BAD_REQUEST, 0);
                             HandlerPack.write(exchange, res);
                         }
-                    } else if(args.length == 1){
-                        PersonService serv = new PersonService(auth);
+                    } else if(args.length == 1){ //if there is only one arguement, it is 'person'
+                        PersonService serv = new PersonService(auth); //check authorization and generate a request
                         res1 = serv.post();
                         if(res1.getSuccess()){
                             exchange.sendResponseHeaders(HttpURLConnection.HTTP_OK, 0);

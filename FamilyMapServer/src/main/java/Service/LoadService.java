@@ -30,12 +30,13 @@ public class LoadService {
             UserDAO ud = new UserDAO(conn);
             PersonDAO pd = new PersonDAO(conn);
             EventDAO ed = new EventDAO(conn);
-            List<User> ul = req.getUsers();
+            List<User> ul = req.getUsers(); //get the request user, person and events lists
             List<Person> pl = req.getPerson();
             List<Event> el = req.getEvents();
             int uc = 0;
             int pc = 0;
             int ec = 0;
+            //Add the users, persons and events to the database
             for(int i = 0; i < ul.size(); i++){
                 ud.insert(ul.get(i));
                 uc = i + 1;
@@ -48,6 +49,7 @@ public class LoadService {
                 ed.insert(el.get(i));
                 ec = i + 1;
             }
+            //create a load request
             load = new LoadResult("Successfully added " + uc + " users, " + pc + " persons, and " + ec + " events to the database", true);
             ServicePack.closeConnection(db, true);
         } catch (DataAccessException e) {

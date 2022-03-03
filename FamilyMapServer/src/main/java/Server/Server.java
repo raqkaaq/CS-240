@@ -21,7 +21,7 @@ public class Server {
         }
         server.setExecutor(null);
         System.out.println("Creating contexts");
-        //server.createContext("", ); for handlers
+        //create contexts
         server.createContext("/clear", new ClearHandler());
         server.createContext("/user/register", new RegisterHandler());
         server.createContext("/fill/", new FillHandler());
@@ -30,6 +30,7 @@ public class Server {
         server.createContext("/person", new PersonHandler());
         server.createContext("/event", new EventHandler());
         server.createContext("/", new DefaultFileHandler());
+
         System.out.println("Starting server");
         server.start();
         System.out.println("Server started on port " + portNumber);

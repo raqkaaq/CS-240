@@ -87,6 +87,12 @@ public class PersonDAO {
         return null;
     }
 
+    /**
+     * A function that returns all person objects associated with a given username
+     * @param username
+     * @return A person list object
+     * @throws DataAccessException
+     */
     public List<Person> getAllPersons(String username) throws DataAccessException {
         List<Person> persons = null;
         ResultSet rs = null;

@@ -1,5 +1,5 @@
 package Data;
-
+//An array for storing the name data
 public class NameArray {
     String[] data;
 

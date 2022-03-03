@@ -118,6 +118,10 @@ public class UserDAO {
         return null;
     }
 
+    /**
+     * A function that deletes a user from the database
+     * @param username
+     */
     public void deleteUser(String username) {
         String sql1 = "DELETE FROM event WHERE associatedUsername = ?;";
         String sql2 = "DELETE FROM person WHERE associatedUsername = ?;";

@@ -60,30 +60,30 @@ public class FillService {
             pd = new PersonDAO(conn);
             ed = new EventDAO(conn);
             fillData = new FillData();
-            User user = ud.find(filled.getUsername());
+            User user = ud.find(filled.getUsername()); //finds the user
             int generations = 0;
-            if(filled.getGenerations() == null) {
+            if(filled.getGenerations() == null) { //parse the generations parameter
                 generations = 4;
             } else {
                 try {
                     generations = Integer.parseInt(filled.getGenerations());
                 } catch (NumberFormatException e) {
-                    e.printStackTrace();
+                    throw new DataAccessException("Invalid generations parameter");
                 }
             }
             if((generations <= 5 && generations > 0)){
-                if(user != null){
-                    User use = remake(user);
-                    ud.insert(remake(use));//deletes person id of the user, and other pertinent information
-                    Person p = makePerson(use);
-                    ed.insert(ServicePack.generateUserEvents(use, fillData));
-                    if(generations > 0)
+                if(user != null){ //if user exists
+                    User use = remake(user); //add a new personid to the user
+                    ud.insert(use);//deletes person id of the user, and other pertinent information
+                    Person p = makePerson(use); //makes a corresponding person to the user
+                    ed.insert(ServicePack.generateUserEvents(use, fillData)); //generates default user data
+                    if(generations > 0) //fills in the family data for generations
                         ServicePack.fillGenerations(p, generations, 1990, pd, ed, fillData); //birth year is 1990, maybe change this to a select later
                     pd.insert(p); // Inserts a new person with the new person id
                     double g = (double) generations;
-                    double people = (double) (Math.pow(2.0,(generations + 1.0)) - 1.0);
+                    double people = (double) (Math.pow(2.0,(generations + 1.0)) - 1.0); //gets the number of people 2^(generations +1) - 1
                     int numPeople = (int) people;
-                    int numEvents = 3 * numPeople;
+                    int numEvents = 3 * numPeople; //since adding 3 events per person
                     ServicePack.closeConnection(db, true);
                     fill = new FillResult("Successfully added " + numPeople + " persons and " + numEvents + " events to the database", true);
 

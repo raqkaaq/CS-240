@@ -120,6 +120,13 @@ public class Database {
         return true;
     }
 
+    /**
+     * A function that returns the row count of a table in the database
+     * @param table
+     * @param conn
+     * @return
+     * @throws DataAccessException
+     */
     public static int count(String table, Connection conn) throws DataAccessException{
         String sql = "SELECT COUNT(*) AS count FROM " + table + ";";
         try {

@@ -1,5 +1,5 @@
 package Data;
-
+//A mirror of the name.json data for FillData
 public class Name {
     private String firstName;
     private String lastName;

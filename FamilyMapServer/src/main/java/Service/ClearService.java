@@ -24,7 +24,7 @@ public class ClearService {
         try{
             Connection conn = db.openConnection();
             db.clearTables();
-            db.closeConnection(true);
+            db.closeConnection(true); //try to clear the tables and commit, if fails at any point, create a failed clear result
         } catch (DataAccessException e) {
             System.out.println(e.getMessage());
             clear = new ClearResult("Internal server error", false);
