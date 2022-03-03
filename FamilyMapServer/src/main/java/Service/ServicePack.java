@@ -31,9 +31,9 @@ public class ServicePack {
     public static List<Event> generateUserEvents(User user, FillData fillData) {
         List<Event> list = new ArrayList<>();
         LocationData location = getRandomLocation(fillData);
-        list.add(new Event(UUID.randomUUID().toString(), user.getUsername(), user.getPersonID(), location.getLatitude(), location.getLongitude(), location.getCountry(), location.getCity(), "birth", 1990));
+        list.add(new Event(createRandomString(), user.getUsername(), user.getPersonID(), location.getLatitude(), location.getLongitude(), location.getCountry(), location.getCity(), "birth", 1990));
         location = getRandomLocation(fillData);
-        list.add(new Event(UUID.randomUUID().toString(), user.getUsername(), user.getPersonID(), location.getLatitude(), location.getLongitude(), location.getCountry(), location.getCity(), "baptism", 1999));
+        list.add(new Event(createRandomString(), user.getUsername(), user.getPersonID(), location.getLatitude(), location.getLongitude(), location.getCountry(), location.getCity(), "baptism", 1999));
         return list;
     }
     public static LocationData getRandomLocation(FillData fillData){
@@ -76,13 +76,13 @@ public class ServicePack {
 
     public static Person makeFather(Person orphan, FillData fillData) throws DataAccessException {
         Name name = getRandomName("m", fillData);
-        Person father = new Person(UUID.randomUUID().toString(), orphan.getAssociatedUsername(), name.getFirstName(), name.getLastName(), "m", "", "", "");
+        Person father = new Person(createRandomString(), orphan.getAssociatedUsername(), name.getFirstName(), name.getLastName(), "m", "", "", "");
         orphan.setFatherID(father.getPersonID());
         return father;
     }
     public static Person makeMother(Person orphan, FillData fillData) throws DataAccessException {
         Name name = getRandomName("f", fillData);
-        Person mother =  new Person(UUID.randomUUID().toString(), orphan.getAssociatedUsername(), name.getFirstName(), name.getLastName(), "f", "", "", "");
+        Person mother =  new Person(createRandomString(), orphan.getAssociatedUsername(), name.getFirstName(), name.getLastName(), "f", "", "", "");
         orphan.setMotherID(mother.getPersonID());
         return mother;
     }
@@ -91,16 +91,16 @@ public class ServicePack {
         father.setSpouseID(mother.getPersonID());
         mother.setSpouseID(father.getPersonID());
         LocationData marriage = getRandomLocation(fillData);
-        Event fatherMarriage = new Event(UUID.randomUUID().toString(), father.getAssociatedUsername(), father.getPersonID(), marriage.getLatitude(), marriage.getLongitude(), marriage.getCountry(), marriage.getCity(), "marriage", marriageYear);
-        Event motherMarriage = new Event(UUID.randomUUID().toString(), mother.getAssociatedUsername(), mother.getPersonID(), marriage.getLatitude(), marriage.getLongitude(), marriage.getCountry(), marriage.getCity(), "marriage", marriageYear);
+        Event fatherMarriage = new Event(createRandomString(), father.getAssociatedUsername(), father.getPersonID(), marriage.getLatitude(), marriage.getLongitude(), marriage.getCountry(), marriage.getCity(), "marriage", marriageYear);
+        Event motherMarriage = new Event(createRandomString(), mother.getAssociatedUsername(), mother.getPersonID(), marriage.getLatitude(), marriage.getLongitude(), marriage.getCountry(), marriage.getCity(), "marriage", marriageYear);
         ed.insert(fatherMarriage);
         ed.insert(motherMarriage);
     }
     private static void fillEvents(Person orphan, int birthYear, EventDAO ed, FillData fillData) throws DataAccessException {
         LocationData location = getRandomLocation(fillData);
         LocationData location2 = getRandomLocation(fillData);
-        Event birth = new Event(UUID.randomUUID().toString(), orphan.getAssociatedUsername(), orphan.getPersonID(), location.getLatitude(), location.getLongitude(), location.getCountry(), location.getCity(), "birth", birthYear);
-        Event death = new Event(UUID.randomUUID().toString(), orphan.getAssociatedUsername(), orphan.getPersonID(), location2.getLatitude(), location2.getLongitude(), location2.getCountry(), location2.getCity(), "death", birthYear + 60);
+        Event birth = new Event(createRandomString(), orphan.getAssociatedUsername(), orphan.getPersonID(), location.getLatitude(), location.getLongitude(), location.getCountry(), location.getCity(), "birth", birthYear);
+        Event death = new Event(createRandomString(), orphan.getAssociatedUsername(), orphan.getPersonID(), location2.getLatitude(), location2.getLongitude(), location2.getCountry(), location2.getCity(), "death", birthYear + 60);
         ed.insert(birth);
         ed.insert(death);
     }

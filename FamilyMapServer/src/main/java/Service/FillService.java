@@ -118,7 +118,7 @@ public class FillService {
     }
 
     public User remake(User user) throws DataAccessException {
-        user.setPersonID(UUID.randomUUID().toString());
+        user.setPersonID(ServicePack.createRandomString());
         ud.deleteUser(user.getUsername());
         return user;
     }
