@@ -20,7 +20,6 @@ public class RegisterService {
      */
     private RegisterResult register;
     private RegisterRequest req;
-    FillService fill;
     FillData fillData;
     Database db;
     Connection conn;
@@ -42,12 +41,14 @@ public class RegisterService {
             ed = new EventDAO(conn);
             FillService fill = new FillService();
             fillData = fill.getFillData();
-            User user = createUser();
+            User user = createUser(req);
             ud.insert(user);
         } catch (DataAccessException e) {
             e.printStackTrace();
         }
     }
+
+    public RegisterService() {}
 
     public void registerRun(){
         try{
@@ -79,8 +80,16 @@ public class RegisterService {
         return this.register;
     }
 
-    public User createUser(){
+    public User createUser(RegisterRequest req){
         User user = new User(req.getUsername(), req.getPassword(), req.getEmail(), req.getFirstName(), req.getLastName(), req.getGender(), UUID.randomUUID().toString());
         return user;
+    }
+
+    public void stopConnection() throws DataAccessException {
+        ServicePack.closeConnection(db, true);
+    }
+
+    public RegisterResult getRegister() {
+        return register;
     }
 }

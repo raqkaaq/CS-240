@@ -52,4 +52,14 @@ public class RegisterResult extends Result{
     public String getPersonId() {
         return personId;
     }
+
+    @Override
+    public String toString() {
+        return "RegisterResult{" +
+                "authToken='" + authToken + '\'' +
+                ", username='" + username + '\'' +
+                ", personId='" + personId + '\'' +
+                ", message='" + getMessage() + '\'' +
+                '}';
+    }
 }
