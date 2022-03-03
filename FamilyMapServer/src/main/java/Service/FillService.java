@@ -67,7 +67,11 @@ public class FillService {
             if(filled.getGenerations() == null) {
                 generations = 4;
             } else {
-                generations = Integer.parseInt(filled.getGenerations());
+                try {
+                    generations = Integer.parseInt(filled.getGenerations());
+                } catch (NumberFormatException e) {
+                    e.printStackTrace();
+                }
             }
             if((generations < 5 && generations > 0)){
                 if(user != null){
