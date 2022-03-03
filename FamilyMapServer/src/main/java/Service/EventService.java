@@ -32,9 +32,9 @@ public class EventService {
             if(auth != null){
                 events = new EventResult(ed.getAllEvents(auth.getUserName()));
             } else {
-                throw new DataAccessException("Invalid authorization: You do not have access to this resource");
+                throw new DataAccessException("error Invalid authorization: You do not have access to this resource");
             }
-            ServicePack.closeConnection(db, false);
+            ServicePack.closeConnection(db, true);
         } catch (DataAccessException e) {
             events =  new EventResult(e.getMessage());
             try{

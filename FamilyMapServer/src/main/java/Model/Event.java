@@ -20,7 +20,7 @@ public class Event {
     /**
      * A username
      */
-    private String username;
+    private String associatedUsername;
     /**
      * A personID
      */
@@ -65,7 +65,7 @@ public class Event {
      */
     public Event(String eventID, String username, String personID, float latitude, float longitude, String country, String city, String eventType, int year) {
         this.eventID = eventID;
-        this.username = username;
+        this.associatedUsername = username;
         this.personID = personID;
         this.latitude = latitude;
         this.longitude = longitude;
@@ -83,12 +83,12 @@ public class Event {
         this.eventID = eventID;
     }
 
-    public String getUsername() {
-        return username;
+    public String getAssociatedUsername() {
+        return associatedUsername;
     }
 
     public void setUsername(String username) {
-        this.username = username;
+        this.associatedUsername = username;
     }
 
     public String getPersonID() {
@@ -152,11 +152,11 @@ public class Event {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Event event = (Event) o;
-        return Float.compare(event.latitude, latitude) == 0 && Float.compare(event.longitude, longitude) == 0 && year == event.year && Objects.equals(eventID, event.eventID) && Objects.equals(username, event.username) && Objects.equals(personID, event.personID) && Objects.equals(country, event.country) && Objects.equals(city, event.city)&& Objects.equals(eventType, event.eventType);
+        return Float.compare(event.latitude, latitude) == 0 && Float.compare(event.longitude, longitude) == 0 && year == event.year && Objects.equals(eventID, event.eventID) && Objects.equals(associatedUsername, event.associatedUsername) && Objects.equals(personID, event.personID) && Objects.equals(country, event.country) && Objects.equals(city, event.city)&& Objects.equals(eventType, event.eventType);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(eventID, username, personID, latitude, longitude, country, eventType, year);
+        return Objects.hash(eventID, associatedUsername, personID, latitude, longitude, country, eventType, year);
     }
 }

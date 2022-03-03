@@ -29,9 +29,9 @@ public class PersonService {
             if(auth != null){
                 persons = new PersonResult(pd.getAllPersons(auth.getUserName()));
             } else {
-                throw new DataAccessException("Invalid authorization: You do not have access to this resource");
+                throw new DataAccessException("error Invalid authorization: You do not have access to this resource");
             }
-            ServicePack.closeConnection(db, false);
+            ServicePack.closeConnection(db, true);
         } catch (DataAccessException e) {
             persons =  new PersonResult(e.getMessage());
             try{

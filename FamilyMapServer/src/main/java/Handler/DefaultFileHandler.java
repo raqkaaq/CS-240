@@ -3,6 +3,8 @@ package Handler;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.nio.file.FileSystems;
@@ -26,8 +28,16 @@ public class DefaultFileHandler implements HttpHandler {
                 } else {
                     String path = new String("web" + url);
                     Path file = FileSystems.getDefault().getPath(path);
-                    exchange.sendResponseHeaders(HttpURLConnection.HTTP_OK, 0);
-                    Files.copy(file, exchange.getResponseBody());
+                    File testing = new File(file.toString());
+                    if(testing.exists()) {
+                        exchange.sendResponseHeaders(HttpURLConnection.HTTP_OK, 0);
+                        Files.copy(file, exchange.getResponseBody());
+                    } else {
+                        file = FileSystems.getDefault().getPath("web/HTML/404.html");
+                        exchange.sendResponseHeaders(HttpURLConnection.HTTP_NOT_FOUND, 0);
+                        Files.copy(file, exchange.getResponseBody());
+
+                    }
                     exchange.getResponseBody().close();
                 }
                 success = true;

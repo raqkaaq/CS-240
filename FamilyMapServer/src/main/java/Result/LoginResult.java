@@ -9,7 +9,7 @@ public class LoginResult extends Result{
     /**
      * An auth token
      */
-    private String authToken;
+    private String authtoken;
     /**
      * A username
      */
@@ -25,7 +25,7 @@ public class LoginResult extends Result{
      */
     public LoginResult(String message){
         super(message, false);
-        this.authToken = null;
+        this.authtoken = null;
         this.username = null;
         this.personID = null;
     }
@@ -38,16 +38,16 @@ public class LoginResult extends Result{
      */
     public LoginResult(String authToken, String username, String personID) {
         super(null, true);
-        this.authToken = authToken;
+        this.authtoken = authToken;
         this.username = username;
         this.personID = personID;
     }
 
     public void setAuthToken(String authToken) {
-        this.authToken = authToken;
+        this.authtoken = authToken;
     }
     public String getAuthToken() {
-        return authToken;
+        return authtoken;
     }
 
     public String getUsername() {
@@ -63,11 +63,11 @@ public class LoginResult extends Result{
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         LoginResult that = (LoginResult) o;
-        return Objects.equals(authToken, that.authToken) && Objects.equals(username, that.username) && Objects.equals(personID, that.personID) && Objects.equals(getMessage(), that.getMessage());
+        return Objects.equals(authtoken, that.authtoken) && Objects.equals(username, that.username) && Objects.equals(personID, that.personID) && Objects.equals(getMessage(), that.getMessage());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(authToken, username, personID);
+        return Objects.hash(authtoken, username, personID);
     }
 }

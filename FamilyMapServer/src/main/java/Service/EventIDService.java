@@ -32,17 +32,20 @@ public class EventIDService {
             Event eve = pd.find(req.getEventID());
             if(auth != null){
                 if(eve != null){
-                    if(Objects.equals(eve.getUsername(), auth.getUserName())){
-                        event = new EventIDResult(eve.getUsername(), eve.getEventID(), eve.getPersonID(), eve.getLatitude(), eve.getLongitude(), eve.getCountry(), eve.getCity(), eve.getEventType(), eve.getYear());
+                    if(Objects.equals(eve.getAssociatedUsername(), auth.getUserName())){
+                        event = new EventIDResult(eve.getAssociatedUsername(), eve.getEventID(), eve.getPersonID(), eve.getLatitude(), eve.getLongitude(), eve.getCountry(), eve.getCity(), eve.getEventType(), eve.getYear());
                         ServicePack.closeConnection(db, true);
                     } else {
-                        throw new DataAccessException("Invalid authorization: You do not have access to this event");
+                        ServicePack.closeConnection(db,false);
+                        event = new EventIDResult("error Invalid authorization: You do not have access to this event");
                     }
                 } else {
-                    throw new DataAccessException("Invalid event id");
+                    ServicePack.closeConnection(db,false);
+                    event = new EventIDResult("error Invalid event id");
                 }
             } else {
-                throw new DataAccessException("Invalid authorization: You do not have access to this resource");
+                ServicePack.closeConnection(db,false);
+                event = new EventIDResult("error Invalid authorization: You do not have access to this resource");
             }
         } catch (DataAccessException e) {
             event = new EventIDResult(e.getMessage());

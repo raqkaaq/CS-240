@@ -20,8 +20,9 @@ public class PersonHandler implements HttpHandler {
     String[] args;
     @Override
     public void handle(HttpExchange exchange) throws IOException {
+
         try{
-            if(exchange.getRequestMethod().toLowerCase(Locale.ROOT).equals("post")){
+            if(exchange.getRequestMethod().toLowerCase(Locale.ROOT).equals("get")){
                 if(exchange.getRequestHeaders().containsKey("Authorization")){
                     String auth = exchange.getRequestHeaders().getFirst("Authorization");
                     String url = exchange.getRequestURI().toString();

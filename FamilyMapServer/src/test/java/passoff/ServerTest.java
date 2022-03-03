@@ -945,6 +945,7 @@ public class ServerTest {
             //We are calling the get all people api for the user sheila (we are using the authtoken variable from the same loginResult)
             PersonsResult personsResult = proxy.persons(host, port, loginResult.getAuthtoken());
             //Checks to see if the list of events associated with sheila from loadRequest matches the list of events from eventsResult
+            var k = loadRequest.getEvents(loginResult.getUsername());
             assertEquals(loadRequest.getEvents(loginRequest.getUsername()), eventsResult.getDataAsSet(), SHEILA.getUsername() + "'s events do not match those loaded");
             //Checks to see if the list of people associated with sheila from loadRequest matches the list of people from personsResult
             assertEquals(loadRequest.getPersons(loginRequest.getUsername()), personsResult.getDataAsSet(), SHEILA.getUsername() + "'s persons do not match those loaded");

@@ -38,10 +38,13 @@ public class LoginService {
                     authd.insert(auth);
                     login = new LoginResult(auth.getAuthToken(), auth.getUserName(), user.getPersonID());
                     ServicePack.closeConnection(db, true);
+                } else {
+                    login = new LoginResult("error: Invalid username or password");
+                    ServicePack.closeConnection(db, false);
                 }
             } else {
-                login = new LoginResult("Invalid username or password");
-                ServicePack.closeConnection(db,false);
+                login = new LoginResult("error: Invalid username or password");
+                ServicePack.closeConnection(db, false);
             }
         } catch (DataAccessException e) {
             login = new LoginResult(e.getMessage());

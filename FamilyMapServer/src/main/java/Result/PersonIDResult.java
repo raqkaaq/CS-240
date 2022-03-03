@@ -9,7 +9,7 @@ public class PersonIDResult extends Result{
     /**
      * A username
      */
-    private String username;
+    private String associatedUsername;
     /**
      * A person id
      */
@@ -52,7 +52,7 @@ public class PersonIDResult extends Result{
      */
     public PersonIDResult(String username, String personID, String firstName, String lastName, String gender, String father, String mother, String spouse) {
         super(null, true);
-        this.username = username;
+        this.associatedUsername = username;
         this.personID = personID;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -66,8 +66,8 @@ public class PersonIDResult extends Result{
         super(message, false);
     }
 
-    public String getUsername() {
-        return username;
+    public String getAssociatedUsername() {
+        return associatedUsername;
     }
 
     public String getPersonID() {
@@ -103,11 +103,11 @@ public class PersonIDResult extends Result{
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         PersonIDResult that = (PersonIDResult) o;
-        return Objects.equals(username, that.username) && Objects.equals(personID, that.personID) && Objects.equals(firstName, that.firstName) && Objects.equals(lastName, that.lastName) && Objects.equals(gender, that.gender) && Objects.equals(father, that.father) && Objects.equals(mother, that.mother) && Objects.equals(spouse, that.spouse) && Objects.equals(getMessage(), that.getMessage());
+        return Objects.equals(associatedUsername, that.associatedUsername) && Objects.equals(personID, that.personID) && Objects.equals(firstName, that.firstName) && Objects.equals(lastName, that.lastName) && Objects.equals(gender, that.gender) && Objects.equals(father, that.father) && Objects.equals(mother, that.mother) && Objects.equals(spouse, that.spouse) && Objects.equals(getMessage(), that.getMessage());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(username, personID, firstName, lastName, gender, father, mother, spouse);
+        return Objects.hash(associatedUsername, personID, firstName, lastName, gender, father, mother, spouse);
     }
 }

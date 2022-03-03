@@ -1,5 +1,6 @@
 package Handler;
 
+import DataAccess.DataAccessException;
 import Request.RegisterRequest;
 import Result.RegisterResult;
 import Result.Result;
@@ -38,6 +39,10 @@ public class RegisterHandler implements HttpHandler {
         } catch (IOException e) {
             exchange.sendResponseHeaders(HttpURLConnection.HTTP_SERVER_ERROR, 0);
             Result fail = new Result("Internal server error", false);
+            HandlerPack.write(exchange, fail);
+        } catch (DataAccessException e) {
+            exchange.sendResponseHeaders(HttpURLConnection.HTTP_SERVER_ERROR, 0);
+            Result fail = new Result(e.getMessage(), false);
             HandlerPack.write(exchange, fail);
         }
     }

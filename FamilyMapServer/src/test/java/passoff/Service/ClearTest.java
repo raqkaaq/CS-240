@@ -53,7 +53,7 @@ public class ClearTest {
         Assertions.assertDoesNotThrow(() -> ed.insert(e));
         Assertions.assertDoesNotThrow(() -> ed.insert(e2));
         db.closeConnection(true);
-        String response = "Clear successful";
+        String response = "clear succeeded";
         ClearResult result = clear.clearTables();
         Assertions.assertEquals(response, result.getMessage());
         int count = 0;

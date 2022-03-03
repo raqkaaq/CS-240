@@ -7,7 +7,7 @@ public class RegisterResult extends Result{
     /**
      * An authtoken
      */
-    private final String authToken;
+    private final String authtoken;
     /**
      * A username
      */
@@ -15,7 +15,7 @@ public class RegisterResult extends Result{
     /**
      * A person id
      */
-    private final String personId;
+    private final String personID;
 
     /**
      * A constructor that creates a successful result
@@ -25,9 +25,9 @@ public class RegisterResult extends Result{
      */
     public RegisterResult(String authToken, String username, String personId) {
         super(null, true);
-        this.authToken = authToken;
+        this.authtoken = authToken;
         this.username = username;
-        this.personId = personId;
+        this.personID = personId;
     }
 
     /**
@@ -36,29 +36,29 @@ public class RegisterResult extends Result{
      */
     public RegisterResult(String message){
         super(message, false);
-        this.authToken = null;
+        this.authtoken = null;
         this.username = null;
-        this.personId = null;
+        this.personID = null;
     }
 
-    public String getAuthToken() {
-        return authToken;
+    public String getAuthtoken() {
+        return authtoken;
     }
 
     public String getUsername() {
         return username;
     }
 
-    public String getPersonId() {
-        return personId;
+    public String getPersonID() {
+        return personID;
     }
 
     @Override
     public String toString() {
         return "RegisterResult{" +
-                "authToken='" + authToken + '\'' +
+                "authToken='" + authtoken + '\'' +
                 ", username='" + username + '\'' +
-                ", personId='" + personId + '\'' +
+                ", personId='" + personID + '\'' +
                 ", message='" + getMessage() + '\'' +
                 '}';
     }

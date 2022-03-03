@@ -39,13 +39,16 @@ public class PersonIDService {
                         person = new PersonIDResult(pers.getAssociatedUsername(), pers.getPersonID(), pers.getFirstName(), pers.getLastName(), pers.getGender(), pers.getFatherID(), pers.getMotherID(), pers.getSpouseID());
                         ServicePack.closeConnection(db, true);
                     } else {
-                        throw new DataAccessException("Invalid authorization: You do not have access to this person");
+                        ServicePack.closeConnection(db,false);
+                        person = new PersonIDResult("error Invalid authorization: You do not have access to this person");
                     }
                 } else {
-                    throw new DataAccessException("Invalid person id");
+                    ServicePack.closeConnection(db,false);
+                    person = new PersonIDResult("error Invalid person id");
                 }
             } else {
-                throw new DataAccessException("Invalid authorization: You do not have access to this resource");
+                ServicePack.closeConnection(db,false);
+                person = new PersonIDResult("error Invalid authorization: You do not have access to this resource");
             }
         } catch (DataAccessException e) {
             person = new PersonIDResult(e.getMessage());

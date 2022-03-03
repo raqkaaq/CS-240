@@ -40,7 +40,7 @@ public class EventIDTest {
         Assertions.assertDoesNotThrow(() -> authd.insert(a));
         db.closeConnection(true);
         EventIDRequest req = new EventIDRequest(e.getEventID(),a.getAuthToken());
-        EventIDResult expected = new EventIDResult(e.getUsername(), e.getEventID(), e.getPersonID(),e.getLatitude(), e.getLongitude(), e.getCountry(), e.getCity(), e.getEventType(), e.getYear());
+        EventIDResult expected = new EventIDResult(e.getAssociatedUsername(), e.getEventID(), e.getPersonID(),e.getLatitude(), e.getLongitude(), e.getCountry(), e.getCity(), e.getEventType(), e.getYear());
         event = new EventIDService(req);
         EventIDResult actual = event.post();
         Assertions.assertTrue(expected.equals(actual));
@@ -55,7 +55,7 @@ public class EventIDTest {
         Assertions.assertDoesNotThrow(() -> authd.insert(a));
         db.closeConnection(true);
         EventIDRequest req = new EventIDRequest(e.getEventID(),"not right");
-        EventIDResult expected = new EventIDResult("Invalid authorization: You do not have access to this resource");
+        EventIDResult expected = new EventIDResult("error Invalid authorization: You do not have access to this resource");
         event = new EventIDService(req);
         EventIDResult actual = event.post();
         Assertions.assertTrue(expected.equals(actual));
@@ -70,7 +70,7 @@ public class EventIDTest {
         Assertions.assertDoesNotThrow(() -> authd.insert(a));
         db.closeConnection(true);
         EventIDRequest req = new EventIDRequest("whoops",a.getAuthToken());
-        EventIDResult expected = new EventIDResult("Invalid event id");
+        EventIDResult expected = new EventIDResult("error Invalid event id");
         event = new EventIDService(req);
         EventIDResult actual = event.post();
         Assertions.assertTrue(expected.equals(actual));
@@ -86,7 +86,7 @@ public class EventIDTest {
         Assertions.assertDoesNotThrow(() -> authd.insert(a));
         db.closeConnection(true);
         EventIDRequest req = new EventIDRequest(e2.getEventID(),a.getAuthToken());
-        EventIDResult expected = new EventIDResult("Invalid authorization: You do not have access to this event");
+        EventIDResult expected = new EventIDResult("error Invalid authorization: You do not have access to this event");
         event = new EventIDService(req);
         EventIDResult actual = event.post();
         Assertions.assertTrue(expected.equals(actual));

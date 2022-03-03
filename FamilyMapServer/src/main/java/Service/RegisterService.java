@@ -8,6 +8,7 @@ import Request.RegisterRequest;
 import Result.RegisterResult;
 import Data.FillData;
 
+import java.io.FileNotFoundException;
 import java.sql.Connection;
 import java.util.UUID;
 
@@ -31,7 +32,7 @@ public class RegisterService {
      * A constructor that takes a register request
      * @param req a register request
      */
-    public RegisterService(RegisterRequest req){
+    public RegisterService(RegisterRequest req) throws DataAccessException {
         this.req = req;
         db = new Database();
         try{
@@ -43,8 +44,9 @@ public class RegisterService {
             fillData = fill.getFillData();
             User user = createUser(req);
             ud.insert(user);
+            ServicePack.closeConnection(db, true);
         } catch (DataAccessException e) {
-            e.printStackTrace();
+            ServicePack.closeConnection(db, false);
         }
     }
 
@@ -52,6 +54,10 @@ public class RegisterService {
 
     public void registerRun(){
         try{
+            conn  = ServicePack.createConnection(db);
+            ud = new UserDAO(conn);
+            pd = new PersonDAO(conn);
+            ed = new EventDAO(conn);
             User user = ud.find(req.getUsername());
             Person p = new Person(user);
             ed.insert(ServicePack.generateUserEvents(user, fillData));
@@ -83,6 +89,13 @@ public class RegisterService {
     public User createUser(RegisterRequest req){
         User user = new User(req.getUsername(), req.getPassword(), req.getEmail(), req.getFirstName(), req.getLastName(), req.getGender(), UUID.randomUUID().toString());
         return user;
+    }
+    public void openDatabase() throws DataAccessException, FileNotFoundException {
+        conn = ServicePack.createConnection(db);
+        ud = new UserDAO(conn);
+        pd = new PersonDAO(conn);
+        ed = new EventDAO(conn);
+        fillData = new FillData();
     }
 
     public void stopConnection() throws DataAccessException {

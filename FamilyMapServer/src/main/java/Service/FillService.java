@@ -49,19 +49,17 @@ public class FillService {
         try {
             this.filled = filled;
             db = new Database();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    public void fillRun(){
+        try{
             conn = ServicePack.createConnection(db);
             ud = new UserDAO(conn);
             pd = new PersonDAO(conn);
             ed = new EventDAO(conn);
             fillData = new FillData();
-        } catch (FileNotFoundException e) {
-            fill = new FillResult("Internal Server Error", false);
-        } catch (DataAccessException e) {
-            fill = new FillResult("Internal Server Error", false);
-        }
-    }
-    public void fillRun(){
-        try{
             User user = ud.find(filled.getUsername());
             int generations = 0;
             if(filled.getGenerations() == null) {
@@ -73,7 +71,7 @@ public class FillService {
                     e.printStackTrace();
                 }
             }
-            if((generations < 5 && generations > 0)){
+            if((generations <= 5 && generations > 0)){
                 if(user != null){
                     User use = remake(user);
                     ud.insert(remake(use));//deletes person id of the user, and other pertinent information
@@ -90,9 +88,11 @@ public class FillService {
                     fill = new FillResult("Successfully added " + numPeople + " persons and " + numEvents + " events to the database", true);
 
                 } else {
+                    ServicePack.closeConnection(db, false);
                     fill = new FillResult("Invalid username", false);
                 }
             } else {
+                ServicePack.closeConnection(db, false);
                 fill = new FillResult("Invalid generations parameter", false);
             }
 
@@ -104,6 +104,8 @@ public class FillService {
             } catch (DataAccessException ex) {
                 fill = new FillResult(ex.getMessage(), false);
             }
+        } catch (FileNotFoundException e) {
+            fill = new FillResult("Internal Server Error", false);
         }
     }
 
@@ -129,6 +131,13 @@ public class FillService {
     }
     public void closeDatabase() throws DataAccessException {
         ServicePack.closeConnection(db, true);
+    }
+    public void openDatabase() throws DataAccessException, FileNotFoundException {
+        conn = ServicePack.createConnection(db);
+        ud = new UserDAO(conn);
+        pd = new PersonDAO(conn);
+        ed = new EventDAO(conn);
+        fillData = new FillData();
     }
 
     public FillData getFillData() {

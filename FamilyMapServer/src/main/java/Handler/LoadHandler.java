@@ -4,6 +4,7 @@ import Request.LoadRequest;
 import Result.LoadResult;
 import Result.Result;
 import Server.Decode;
+import Service.ClearService;
 import Service.LoadService;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
@@ -20,6 +21,8 @@ public class LoadHandler implements HttpHandler {
     @Override
     public void handle(HttpExchange exchange) throws IOException {
         try {
+            ClearService clear = new ClearService();
+            clear.clearTables();
             if (exchange.getRequestMethod().toLowerCase(Locale.ROOT).equals("post")) {
                 Reader read = new InputStreamReader(exchange.getRequestBody());
                 LoadRequest req = Decode.decodeLoadRequest(read);

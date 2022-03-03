@@ -17,6 +17,7 @@ import Service.ServicePack;
 import org.junit.jupiter.api.*;
 
 import javax.xml.crypto.Data;
+import java.io.FileNotFoundException;
 import java.sql.Connection;
 
 public class RegisterTest {
@@ -43,14 +44,15 @@ public class RegisterTest {
     }
     @Test
     @DisplayName("Testing Constructor")
-    public void testingConstructor(){
+    public void testingConstructor() throws DataAccessException, FileNotFoundException {
         RegisterService reg = new RegisterService(req);
+        reg.openDatabase();
         Assertions.assertDoesNotThrow(() -> reg.stopConnection());
     }
 
     @Test
     @DisplayName("Testing run")
-    public void testRun(){
+    public void testRun() throws DataAccessException {
         RegisterService reg = new RegisterService(req);
         reg.registerRun();
         System.out.println(reg.getRegister());

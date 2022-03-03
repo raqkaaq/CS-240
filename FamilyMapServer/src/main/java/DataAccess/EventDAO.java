@@ -44,7 +44,7 @@ public class EventDAO {
             //to fill in and give it a proper value. The first argument corresponds to the first
             //question mark found in our sql String
             stmt.setString(1, event.getEventID());
-            stmt.setString(2, event.getUsername());
+            stmt.setString(2, event.getAssociatedUsername());
             stmt.setString(3, event.getPersonID());
             stmt.setFloat(4, event.getLatitude());
             stmt.setFloat(5, event.getLongitude());
@@ -107,6 +107,9 @@ public class EventDAO {
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, username);
             rs = stmt.executeQuery();
+            if(!rs.isBeforeFirst()){
+                throw new DataAccessException("No events found for this user: " + username);
+            }
             while (rs.next()) {
                 if(events == null)
                     events = new ArrayList<>();

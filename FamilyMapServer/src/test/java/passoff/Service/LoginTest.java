@@ -54,7 +54,7 @@ public class LoginTest {
         Assertions.assertDoesNotThrow(() -> ud.insert(u));
         db.closeConnection(true);
         LoginRequest login = new LoginRequest("cheese", "nope");
-        LoginResult expected = new LoginResult("Invalid username or password");
+        LoginResult expected = new LoginResult("error: Invalid username or password");
         log = new LoginService(login);
         LoginResult actual = log.post();
         Assertions.assertTrue(expected.equals(actual));

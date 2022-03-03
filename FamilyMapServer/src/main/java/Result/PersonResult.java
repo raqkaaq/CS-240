@@ -12,7 +12,7 @@ public class PersonResult extends Result{
     /**
      * A list of person objects
      */
-    private List<Person> persons;
+    private List<Person> data;
 
     /**
      * A constructor that creates a person result success
@@ -20,7 +20,7 @@ public class PersonResult extends Result{
      */
     public PersonResult(List<Person> persons) {
         super(null, true);
-        this.persons = persons;
+        this.data = persons;
     }
 
     /**
@@ -32,7 +32,7 @@ public class PersonResult extends Result{
     }
 
     public List<Person> getPersons() {
-        return persons;
+        return data;
     }
 
     @Override

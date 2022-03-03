@@ -62,13 +62,13 @@ public class ServicePack {
     public static void fillGenerations(Person orphan, int numGenerations, int birthYear, PersonDAO pd, EventDAO ed, FillData fillData) throws DataAccessException {
         Person father = makeFather(orphan, fillData);
         Person mother = makeMother(orphan, fillData);
-        updateSpouse(father, mother, birthYear - 21, ed, fillData);
-        fillEvents(mother, birthYear - 42, ed, fillData);
-        fillEvents(father, birthYear - 42, ed, fillData);
+        updateSpouse(father, mother, birthYear - 10, ed, fillData);
+        fillEvents(mother, birthYear - 30, ed, fillData);
+        fillEvents(father, birthYear - 30, ed, fillData);
         numGenerations--;
         if(numGenerations > 0) {
-            fillGenerations(father, numGenerations, birthYear - 42, pd, ed, fillData);
-            fillGenerations(mother, numGenerations, birthYear - 42, pd, ed, fillData);
+            fillGenerations(father, numGenerations, birthYear - 30, pd, ed, fillData);
+            fillGenerations(mother, numGenerations, birthYear - 30, pd, ed, fillData);
         }
         pd.insert(father);
         pd.insert(mother);

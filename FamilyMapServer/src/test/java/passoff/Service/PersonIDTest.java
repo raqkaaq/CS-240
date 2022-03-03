@@ -57,7 +57,7 @@ public class PersonIDTest {
         Assertions.assertDoesNotThrow(() -> authd.insert(a));
         db.closeConnection(true);
         PersonIDRequest req = new PersonIDRequest(p.getPersonID(),"cheese2");
-        PersonIDResult expected = new PersonIDResult("Invalid authorization: You do not have access to this resource");
+        PersonIDResult expected = new PersonIDResult("error Invalid authorization: You do not have access to this resource");
         person = new PersonIDService(req);
         PersonIDResult actual = person.post();
         Assertions.assertTrue(expected.equals(actual));
@@ -72,7 +72,7 @@ public class PersonIDTest {
         Assertions.assertDoesNotThrow(() -> authd.insert(a));
         db.closeConnection(true);
         PersonIDRequest req = new PersonIDRequest("hey", a.getAuthToken());
-        PersonIDResult expected = new PersonIDResult("Invalid person id");
+        PersonIDResult expected = new PersonIDResult("error Invalid person id");
         person = new PersonIDService(req);
         PersonIDResult actual = person.post();
         Assertions.assertTrue(expected.equals(actual));
@@ -89,7 +89,7 @@ public class PersonIDTest {
         Assertions.assertDoesNotThrow(() -> authd.insert(a));
         db.closeConnection(true);
         PersonIDRequest req = new PersonIDRequest(p2.getPersonID(), a.getAuthToken());
-        PersonIDResult expected = new PersonIDResult("Invalid authorization: You do not have access to this person");
+        PersonIDResult expected = new PersonIDResult("error Invalid authorization: You do not have access to this person");
         person = new PersonIDService(req);
         PersonIDResult actual = person.post();
         Assertions.assertTrue(expected.equals(actual));

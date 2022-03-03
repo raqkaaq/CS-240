@@ -4,11 +4,16 @@ import DataAccess.DataAccessException;
 import DataAccess.Database;
 import Result.ClearResult;
 
+import java.sql.Connection;
+
 /**
  * A class to handle the clear request and return a clear result
  */
 public class ClearService {
     private ClearResult clear;
+
+    public ClearService() {
+    }
 
     /**
      * A class that returns the clear result after clearing the database
@@ -17,7 +22,7 @@ public class ClearService {
     public ClearResult clearTables(){
         Database db = new Database();
         try{
-            db.openConnection();
+            Connection conn = db.openConnection();
             db.clearTables();
             db.closeConnection(true);
         } catch (DataAccessException e) {
@@ -30,7 +35,7 @@ public class ClearService {
                 return clear;
             }
         }
-        clear = new ClearResult("Clear successful", true);
+        clear = new ClearResult("clear succeeded", true);
         return clear;
     }
 }

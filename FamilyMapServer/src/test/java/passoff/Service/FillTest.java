@@ -2,9 +2,9 @@ package passoff.Service;
 
 import Data.LocationData;
 import Data.Name;
+import Data.FillData;
 import DataAccess.DataAccessException;
 import DataAccess.Database;
-import DataAccess.EventDAO;
 import DataAccess.UserDAO;
 import Model.Person;
 import Model.User;
@@ -15,6 +15,7 @@ import Service.ServicePack;
 import org.junit.jupiter.api.*;
 
 import javax.xml.crypto.Data;
+import java.io.FileNotFoundException;
 import java.sql.Connection;
 
 public class FillTest {
@@ -26,9 +27,11 @@ public class FillTest {
     @BeforeEach
     public void start() throws DataAccessException {
         clear = new ClearService();
+        clear.clearTables();
         FillRequest req = new FillRequest(u.getUsername(), "3");
         try{
             fill = new FillService(req);
+            fill.fillRun();
         } //tests constructor
         catch (Exception e) {
             e.printStackTrace();
@@ -60,7 +63,14 @@ public class FillTest {
     @Test
     @DisplayName("Testing Locations")
     public void locationTest() {
-        Assertions.assertDoesNotThrow(() -> ServicePack.getRandomLocation(fill.getFillData()));
+        FillData fillData = null;
+        try{
+            fillData = new FillData();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        FillData finalFillData = fillData;
+        Assertions.assertDoesNotThrow(() -> ServicePack.getRandomLocation(finalFillData));
         try {
             LocationData location = ServicePack.getRandomLocation(fill.getFillData());
             System.out.println(location.getLatitude() + "  " + location.getLongitude() + "  " + location.getCountry() + "  " + location.getCity());
@@ -72,47 +82,43 @@ public class FillTest {
     @Test
     @DisplayName("Testing remake")
     public void remakeTest() throws DataAccessException {
-        try {
-            System.out.println("Before:");
-            System.out.println(u.toString());
-            User u2 = fill.remake(u);
-            fill.closeDatabase();
-            System.out.println("After:");
-            System.out.println(u2.toString());
-        } catch (DataAccessException e) {
-            e.printStackTrace();
-        }
+        System.out.println("Before:");
+        System.out.println(u.toString());
+        Assertions.assertDoesNotThrow(() -> fill.openDatabase());
+        User u2 = Assertions.assertDoesNotThrow( () -> fill.remake(u));
+        fill.closeDatabase();
+        System.out.println("After:");
+        System.out.println(u2.toString());
         FillRequest req = new FillRequest(u.getUsername(), "3");
         fill = new FillService(req);
+        Assertions.assertDoesNotThrow(() -> fill.openDatabase());
         Assertions.assertDoesNotThrow(() -> fill.remake(u));
         fill.closeDatabase();
     }
 
     @Test
     @DisplayName("Testing make parents")
-    public void makeParents() throws DataAccessException {
+    public void makeParents() {
+        Assertions.assertDoesNotThrow(() ->fill.openDatabase());
         Assertions.assertDoesNotThrow(() -> fill.remake(u));
-        fill.closeDatabase();
         Assertions.assertDoesNotThrow(() -> System.out.println(fill.makePerson(u).toString()));
         Assertions.assertDoesNotThrow(() -> System.out.println(ServicePack.makeFather(fill.makePerson(u), fill.getFillData()).toString()));
         Assertions.assertDoesNotThrow(() -> System.out.println(ServicePack.makeMother(fill.makePerson(u), fill.getFillData()).toString()));
+        Assertions.assertDoesNotThrow(() -> fill.closeDatabase());
     }
 
     @Test
     @DisplayName("Testing updating spouses")
     public void updateSpouseTest(){
-        try{
-            User user = fill.remake(u);
+        Assertions.assertDoesNotThrow(() -> fill.openDatabase());
+            User user = Assertions.assertDoesNotThrow(() -> fill.remake(u));
             Person p = new Person(user);
-            Person mother = ServicePack.makeMother(p, fill.getFillData());
-            Person father = ServicePack.makeFather(p, fill.getFillData());
-            ServicePack.updateSpouse(father, mother, 1932, fill.getEd(), fill.getFillData());
-            fill.closeDatabase();
+            Person mother = Assertions.assertDoesNotThrow( () -> ServicePack.makeMother(p, fill.getFillData()));
+            Person father = Assertions.assertDoesNotThrow( () -> ServicePack.makeFather(p, fill.getFillData()));
+            Assertions.assertDoesNotThrow( () -> ServicePack.updateSpouse(father, mother, 1932, fill.getEd(), fill.getFillData()));
+            Assertions.assertDoesNotThrow(() -> fill.closeDatabase());
             System.out.println(father.toString());
             System.out.println(mother.toString());
-        } catch (DataAccessException e) {
-            e.printStackTrace();
-        }
     }
 
     @Test

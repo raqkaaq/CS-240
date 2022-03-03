@@ -9,7 +9,7 @@ public class EventIDResult extends Result{
     /**
      * A username
      */
-    private String username;
+    private String associatedUsername;
     /**
      * An event id
      */
@@ -57,7 +57,7 @@ public class EventIDResult extends Result{
      */
     public EventIDResult(String username, String eventID, String personID, float latitude, float longitude, String country, String city, String eventType, int year) {
         super(null, true);
-        this.username = username;
+        this.associatedUsername = username;
         this.eventID = eventID;
         this.personID = personID;
         this.latitude = latitude;
@@ -76,8 +76,8 @@ public class EventIDResult extends Result{
         super(message, false);
     }
 
-    public String getUsername() {
-        return username;
+    public String getAssociatedUsername() {
+        return associatedUsername;
     }
 
     public String getEventID() {
@@ -117,11 +117,11 @@ public class EventIDResult extends Result{
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         EventIDResult that = (EventIDResult) o;
-        return Float.compare(that.getLatitude(), getLatitude()) == 0 && Float.compare(that.getLongitude(), getLongitude()) == 0 && getYear() == that.getYear() && Objects.equals(getUsername(), that.getUsername()) && Objects.equals(getEventID(), that.getEventID()) && Objects.equals(getPersonID(), that.getPersonID()) && Objects.equals(getCountry(), that.getCountry()) && Objects.equals(getCity(), that.getCity()) && Objects.equals(getEventType(), that.getEventType()) && Objects.equals(getMessage(), that.getMessage());
+        return Float.compare(that.getLatitude(), getLatitude()) == 0 && Float.compare(that.getLongitude(), getLongitude()) == 0 && getYear() == that.getYear() && Objects.equals(getAssociatedUsername(), that.getAssociatedUsername()) && Objects.equals(getEventID(), that.getEventID()) && Objects.equals(getPersonID(), that.getPersonID()) && Objects.equals(getCountry(), that.getCountry()) && Objects.equals(getCity(), that.getCity()) && Objects.equals(getEventType(), that.getEventType()) && Objects.equals(getMessage(), that.getMessage());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getUsername(), getEventID(), getPersonID(), getLatitude(), getLongitude(), getCountry(), getCity(), getEventType(), getYear());
+        return Objects.hash(getAssociatedUsername(), getEventID(), getPersonID(), getLatitude(), getLongitude(), getCountry(), getCity(), getEventType(), getYear());
     }
 }

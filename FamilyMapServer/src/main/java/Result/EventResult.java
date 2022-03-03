@@ -2,8 +2,10 @@ package Result;
 
 import Model.Event;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 /**
  * A class that models the event result json
@@ -12,7 +14,7 @@ public class EventResult extends Result{
     /**
      * A list of events
      */
-    private List<Event> event;
+    private List<Event> data;
 
     /**
      * A constructor that creates the failed result
@@ -28,11 +30,15 @@ public class EventResult extends Result{
      */
     public EventResult(List<Event> event) {
         super(null, true);
-        this.event = event;
+        this.data = event;
     }
 
     public List<Event> getEvent() {
-        return event;
+        return data;
+    }
+
+    public Set<passoffmodels.Event> getDataAsSet() {
+        return new HashSet(this.data);
     }
 
     @Override

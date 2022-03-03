@@ -96,6 +96,7 @@ public class Database {
             String sql = "DELETE FROM person; DELETE FROM event; DELETE FROM authToken; DELETE FROM user;";
             stmt.executeUpdate(sql);
         } catch (SQLException e) {
+            e.printStackTrace();
             throw new DataAccessException("SQL Error encountered while clearing tables");
         }
     }

@@ -18,7 +18,7 @@ public class LoadRequest {
     /**
      * A list of people
      */
-    List<Person> person;
+    List<Person> persons;
     /**
      * A list of events
      */
@@ -32,7 +32,7 @@ public class LoadRequest {
      */
     public LoadRequest(List<User> users, List<Person> person, List<Event> events) {
         this.users = users;
-        this.person = person;
+        this.persons = person;
         this.events = events;
     }
 
@@ -41,7 +41,7 @@ public class LoadRequest {
     }
 
     public List<Person> getPerson() {
-        return person;
+        return persons;
     }
 
     public List<Event> getEvents() {
@@ -53,11 +53,11 @@ public class LoadRequest {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         LoadRequest that = (LoadRequest) o;
-        return Objects.equals(users, that.users) && Objects.equals(person, that.person) && Objects.equals(events, that.events);
+        return Objects.equals(users, that.users) && Objects.equals(persons, that.persons) && Objects.equals(events, that.events);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(users, person, events);
+        return Objects.hash(users, persons, events);
     }
 }
