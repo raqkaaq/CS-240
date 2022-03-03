@@ -63,7 +63,7 @@ public class RegisterService {
             ed.insert(ServicePack.generateUserEvents(user, fillData));
             ServicePack.fillGenerations(p, 4, 1980, pd, ed, fillData);
             pd.insert(p);
-            AuthToken auth = new AuthToken(UUID.randomUUID().toString(), user.getUsername());
+            AuthToken auth = new AuthToken(ServicePack.createRandomString(), user.getUsername());
             AuthTokenDAO authd = new AuthTokenDAO(conn);
             authd.insert(auth);
             register = new RegisterResult(auth.getAuthToken(), user.getUsername(), user.getPersonID());
@@ -87,7 +87,7 @@ public class RegisterService {
     }
 
     public User createUser(RegisterRequest req){
-        User user = new User(req.getUsername(), req.getPassword(), req.getEmail(), req.getFirstName(), req.getLastName(), req.getGender(), UUID.randomUUID().toString());
+        User user = new User(req.getUsername(), req.getPassword(), req.getEmail(), req.getFirstName(), req.getLastName(), req.getGender(), ServicePack.createRandomString());
         return user;
     }
     public void openDatabase() throws DataAccessException, FileNotFoundException {
