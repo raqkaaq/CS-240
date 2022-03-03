@@ -7,6 +7,7 @@ import com.google.gson.Gson;
 
 import java.io.Reader;
 
+//contains functions useful to decode json requests, only load, login and register are post requests, but I wanted to make the others just in case I wanted to add functionality
 public class Decode {
     public static EventIDRequest decodeEventIDRequest(Reader json){
         EventIDRequest ret;

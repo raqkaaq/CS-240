@@ -100,6 +100,12 @@ public class EventDAO {
         return null;
     }
 
+    /**
+     * A function that finds all events in the table corresponding to a given username
+     * @param username
+     * @return An event list object
+     * @throws DataAccessException
+     */
     public List<Event> getAllEvents(String username) throws DataAccessException {
         List<Event> events = null;
         ResultSet rs = null;

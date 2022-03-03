@@ -21,8 +21,8 @@ public class LoginHandler implements HttpHandler {
     public void handle(HttpExchange exchange) throws IOException {
         try{
             if(exchange.getRequestMethod().toLowerCase(Locale.ROOT).equals("post")){
-                Reader read = new InputStreamReader(exchange.getRequestBody());
-                LoginRequest req = Decode.decodeLoginRequest(read);
+                Reader read = new InputStreamReader(exchange.getRequestBody()); //get the login request
+                LoginRequest req = Decode.decodeLoginRequest(read); //parse login json to LoginRequest
                 LoginService serv = new LoginService(req);
                 res = serv.post();
                 if(res.getSuccess()){

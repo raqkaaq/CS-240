@@ -23,10 +23,10 @@ public class RegisterHandler implements HttpHandler {
     public void handle(HttpExchange exchange) throws IOException {
         try{
             if(exchange.getRequestMethod().toLowerCase(Locale.ROOT).equals("post")){
-                Reader read = new InputStreamReader(exchange.getRequestBody());
-                RegisterRequest req = Decode.decodeRegisterRequest(read);
+                Reader read = new InputStreamReader(exchange.getRequestBody()); //read register data
+                RegisterRequest req = Decode.decodeRegisterRequest(read); //decode register data
                 RegisterService serv = new RegisterService(req);
-                serv.registerRun();
+                serv.registerRun(); //generate register family tree
                 res = serv.post();
             }
             if(res.getSuccess()){

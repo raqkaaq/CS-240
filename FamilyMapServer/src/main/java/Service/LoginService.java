@@ -32,17 +32,17 @@ public class LoginService {
             UserDAO usd = new UserDAO(conn);
             AuthTokenDAO authd = new AuthTokenDAO(conn);
             User user = usd.find(req.getUsername());
-            if(user != null) {
+            if(user != null) {//user exists
                 if (Objects.equals(user.getPassword(), req.getPassword())) { //username and password are valid
-                    AuthToken auth = new AuthToken(ServicePack.createRandomString(), user.getUsername());
+                    AuthToken auth = new AuthToken(ServicePack.createRandomString(), user.getUsername()); //create a new authtoken for the user
                     authd.insert(auth);
                     login = new LoginResult(auth.getAuthToken(), auth.getUserName(), user.getPersonID());
                     ServicePack.closeConnection(db, true);
-                } else {
+                } else { //password  not valid
                     login = new LoginResult("error: Invalid username or password");
                     ServicePack.closeConnection(db, false);
                 }
-            } else {
+            } else {//user does not exist
                 login = new LoginResult("error: Invalid username or password");
                 ServicePack.closeConnection(db, false);
             }

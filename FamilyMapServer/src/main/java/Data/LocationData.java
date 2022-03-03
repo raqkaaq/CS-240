@@ -1,7 +1,7 @@
 package Data;
 
 import java.util.Objects;
-
+//A mirror of the location.json data format
 public class LocationData {
     private String country;
     private String city;

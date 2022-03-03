@@ -26,9 +26,10 @@ public class PersonService {
             AuthTokenDAO authd = new AuthTokenDAO(conn);
             PersonDAO pd = new PersonDAO(conn);
             AuthToken auth = authd.find(req);
-            if(auth != null){
+            if(auth != null){ //check authorization exists
                 persons = new PersonResult(pd.getAllPersons(auth.getUserName()));
-            } else {
+                //return all persons with the right username
+            } else { //autorization does not exist
                 throw new DataAccessException("error Invalid authorization: You do not have access to this resource");
             }
             ServicePack.closeConnection(db, true);

@@ -21,11 +21,11 @@ public class LoadHandler implements HttpHandler {
     @Override
     public void handle(HttpExchange exchange) throws IOException {
         try {
-            ClearService clear = new ClearService();
+            ClearService clear = new ClearService(); //clears tables before a load
             clear.clearTables();
             if (exchange.getRequestMethod().toLowerCase(Locale.ROOT).equals("post")) {
-                Reader read = new InputStreamReader(exchange.getRequestBody());
-                LoadRequest req = Decode.decodeLoadRequest(read);
+                Reader read = new InputStreamReader(exchange.getRequestBody()); //gets the load data
+                LoadRequest req = Decode.decodeLoadRequest(read); //decodes the load data into a load request
                 LoadService serv = new LoadService(req);
                 res = serv.post();
             }

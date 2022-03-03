@@ -42,8 +42,8 @@ public class RegisterService {
             ed = new EventDAO(conn);
             FillService fill = new FillService();
             fillData = fill.getFillData();
-            User user = createUser(req);
-            ud.insert(user);
+            User user = createUser(req); //create a new user from the register request
+            ud.insert(user); //insert the user into the database
             ServicePack.closeConnection(db, true);
         } catch (DataAccessException e) {
             ServicePack.closeConnection(db, false);
@@ -58,15 +58,15 @@ public class RegisterService {
             ud = new UserDAO(conn);
             pd = new PersonDAO(conn);
             ed = new EventDAO(conn);
-            User user = ud.find(req.getUsername());
-            Person p = new Person(user);
-            ed.insert(ServicePack.generateUserEvents(user, fillData));
-            ServicePack.fillGenerations(p, 4, 1980, pd, ed, fillData);
-            pd.insert(p);
-            AuthToken auth = new AuthToken(ServicePack.createRandomString(), user.getUsername());
+            User user = ud.find(req.getUsername()); //get the user from the database
+            Person p = new Person(user); //create a new person
+            ed.insert(ServicePack.generateUserEvents(user, fillData)); //generate events for the user
+            ServicePack.fillGenerations(p, 4, 1980, pd, ed, fillData); //generate generations for the user
+            pd.insert(p); //insert the users person into the database
+            AuthToken auth = new AuthToken(ServicePack.createRandomString(), user.getUsername()); //create an authtoken
             AuthTokenDAO authd = new AuthTokenDAO(conn);
             authd.insert(auth);
-            register = new RegisterResult(auth.getAuthToken(), user.getUsername(), user.getPersonID());
+            register = new RegisterResult(auth.getAuthToken(), user.getUsername(), user.getPersonID()); //return relevant data
             ServicePack.closeConnection(db, true);
         } catch (DataAccessException e) {
             register = new RegisterResult(e.getMessage());
@@ -86,10 +86,12 @@ public class RegisterService {
         return this.register;
     }
 
+    //creates a user from a request
     public User createUser(RegisterRequest req){
         User user = new User(req.getUsername(), req.getPassword(), req.getEmail(), req.getFirstName(), req.getLastName(), req.getGender(), ServicePack.createRandomString());
         return user;
     }
+    //used for debugging to force open the database
     public void openDatabase() throws DataAccessException, FileNotFoundException {
         conn = ServicePack.createConnection(db);
         ud = new UserDAO(conn);
@@ -97,7 +99,7 @@ public class RegisterService {
         ed = new EventDAO(conn);
         fillData = new FillData();
     }
-
+    //used for debugging to force close the database
     public void stopConnection() throws DataAccessException {
         ServicePack.closeConnection(db, true);
     }

@@ -4,6 +4,7 @@ import Request.*;
 import Result.*;
 import com.google.gson.Gson;
 
+//contains functions to encode results into json, only encode(Result) is used since all results extend the Result class
 public class Encode {
     public static String encode(ClearResult res){
         Gson gson = new Gson();

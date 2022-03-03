@@ -12,7 +12,7 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.util.Locale;
-
+//Handles /clear calls
 public class ClearHandler implements HttpHandler {
     @Override
     public void handle(HttpExchange exchange) throws IOException {
@@ -20,7 +20,7 @@ public class ClearHandler implements HttpHandler {
         try{
             if(exchange.getRequestMethod().toLowerCase(Locale.ROOT).equals("post")){
                 ClearService clear = new ClearService();
-                ClearResult res = clear.clearTables();
+                ClearResult res = clear.clearTables(); //if no error is thrown, the clear was successful
                 exchange.sendResponseHeaders(HttpURLConnection.HTTP_OK, 0);
                 HandlerPack.write(exchange, res);
                 success = true;
@@ -32,7 +32,7 @@ public class ClearHandler implements HttpHandler {
         } catch (IOException e) {
             exchange.sendResponseHeaders(HttpURLConnection.HTTP_SERVER_ERROR, 0);
             exchange.getResponseBody().close();
-            e.printStackTrace();
+            //e.printStackTrace();
         }
     }
 }

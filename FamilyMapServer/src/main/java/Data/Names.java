@@ -1,5 +1,5 @@
 package Data;
-
+//A mirror of the names.json
 public class Names {
     private String name;
 
