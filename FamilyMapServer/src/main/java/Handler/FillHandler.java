@@ -2,13 +2,11 @@ package Handler;
 
 import Request.FillRequest;
 import Result.FillResult;
-import Server.Encode;
 import Service.FillService;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 
 import java.io.IOException;
-import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.util.Locale;
 

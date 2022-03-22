@@ -9,7 +9,6 @@ import Result.ClearResult;
 import Service.ClearService;
 import org.junit.jupiter.api.*;
 
-import javax.xml.crypto.Data;
 import java.sql.Connection;
 
 public class ClearTest {

@@ -1,9 +1,7 @@
 package DataAccess;
 
-import Model.Event;
 import Model.Person;
 
-import javax.xml.crypto.Data;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

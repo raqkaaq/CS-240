@@ -13,7 +13,6 @@ import org.junit.jupiter.api.*;
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class EventTest {
     Database data = new Database();

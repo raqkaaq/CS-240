@@ -1,10 +1,7 @@
 package Service;
 
 import Data.FillData;
-import Data.LocationData;
-import Data.Name;
 import DataAccess.*;
-import Model.Event;
 import Model.Person;
 import Model.User;
 import Request.FillRequest;
@@ -12,10 +9,6 @@ import Result.FillResult;
 
 import java.io.FileNotFoundException;
 import java.sql.Connection;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
-import java.util.UUID;
 
 /**
  * A class that handles a fill request

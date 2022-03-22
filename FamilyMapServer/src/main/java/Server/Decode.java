@@ -1,6 +1,5 @@
 package Server;
 
-import Model.Event;
 import Request.*;
 import Result.*;
 import com.google.gson.Gson;
