@@ -1,6 +1,5 @@
 package Handler;
 
-import DataAccess.DataAccessException;
 import Request.PersonIDRequest;
 import Result.PersonIDResult;
 import Result.PersonResult;

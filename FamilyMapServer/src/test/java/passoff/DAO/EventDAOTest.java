@@ -1,16 +1,11 @@
 package passoff.DAO;
 
-import Data.FillData;
 import DataAccess.DataAccessException;
 import DataAccess.Database;
 import DataAccess.EventDAO;
 import Model.Event;
-import Model.User;
-import Result.ClearResult;
-import Service.ClearService;
 import org.junit.jupiter.api.*;
 
-import java.io.FileNotFoundException;
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;

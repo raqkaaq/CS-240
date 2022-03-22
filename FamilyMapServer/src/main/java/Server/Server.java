@@ -40,3 +40,4 @@ public class Server {
         new Server().run(portNumber);
     }
 }
+//The Shared classes are stored in an external class called shared

@@ -1,10 +1,5 @@
-import Data.FillData;
-import Data.LocationArray;
-import Data.LocationData;
 import DataAccess.*;
 import Model.AuthToken;
-import Model.Event;
-import Model.User;
 
 import java.io.FileNotFoundException;
 import java.sql.Connection;

@@ -1,20 +1,13 @@
 package passoff.Service;
 
 import DataAccess.*;
-import Model.AuthToken;
-import Model.Event;
-import Model.Person;
 import Model.User;
 import Request.LoginRequest;
-import Result.ClearResult;
 import Result.LoginResult;
-import Service.ClearService;
 import Service.LoginService;
 import org.junit.jupiter.api.*;
 
-import javax.xml.crypto.Data;
 import java.sql.Connection;
-import java.util.Objects;
 
 public class LoginTest {
     private LoginService log;

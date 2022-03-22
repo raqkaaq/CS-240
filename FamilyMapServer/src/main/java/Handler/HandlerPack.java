@@ -7,7 +7,6 @@ import com.sun.net.httpserver.HttpExchange;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
-import java.net.HttpURLConnection;
 
 public class HandlerPack {
     //generic function to write a string to and OutputStream

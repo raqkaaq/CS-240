@@ -6,7 +6,6 @@ import Result.EventResult;
 import Result.Result;
 import Service.EventIDService;
 import Service.EventService;
-import com.sun.jdi.request.EventRequest;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 

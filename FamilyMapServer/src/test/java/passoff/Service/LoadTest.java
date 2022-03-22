@@ -6,9 +6,7 @@ import Model.Event;
 import Model.Person;
 import Model.User;
 import Request.LoadRequest;
-import Result.EventResult;
 import Result.LoadResult;
-import Service.EventService;
 import Service.LoadService;
 import org.junit.jupiter.api.*;
 

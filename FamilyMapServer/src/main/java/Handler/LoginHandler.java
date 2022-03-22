@@ -3,14 +3,12 @@ package Handler;
 import Request.LoginRequest;
 import Result.LoginResult;
 import Server.Decode;
-import Server.Encode;
 import Service.LoginService;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
 import java.io.Reader;
 import java.net.HttpURLConnection;
 import java.util.Locale;

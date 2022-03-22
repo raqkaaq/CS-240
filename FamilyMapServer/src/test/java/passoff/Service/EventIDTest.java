@@ -5,13 +5,10 @@ import Model.AuthToken;
 import Model.Event;
 import Request.EventIDRequest;
 import Result.EventIDResult;
-import Result.EventResult;
 import Service.EventIDService;
 import org.junit.jupiter.api.*;
 
 import java.sql.Connection;
-import java.util.ArrayList;
-import java.util.List;
 
 public class EventIDTest {
     private EventIDService event;

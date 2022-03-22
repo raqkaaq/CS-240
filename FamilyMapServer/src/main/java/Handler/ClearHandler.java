@@ -4,12 +4,8 @@ import Result.ClearResult;
 import Service.ClearService;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
-import Server.Encode;
 
-import java.beans.Encoder;
 import java.io.IOException;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.util.Locale;
 //Handles /clear calls

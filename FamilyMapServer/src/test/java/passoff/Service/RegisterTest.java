@@ -1,24 +1,13 @@
 package passoff.Service;
 
-import Data.LocationData;
-import Data.Name;
 import DataAccess.DataAccessException;
-import DataAccess.Database;
-import DataAccess.EventDAO;
-import DataAccess.UserDAO;
-import Model.Person;
 import Model.User;
-import Request.FillRequest;
 import Request.RegisterRequest;
 import Service.ClearService;
-import Service.FillService;
 import Service.RegisterService;
-import Service.ServicePack;
 import org.junit.jupiter.api.*;
 
-import javax.xml.crypto.Data;
 import java.io.FileNotFoundException;
-import java.sql.Connection;
 
 public class RegisterTest {
     private ClearService clear;

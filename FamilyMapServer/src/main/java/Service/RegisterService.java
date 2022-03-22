@@ -10,7 +10,6 @@ import Data.FillData;
 
 import java.io.FileNotFoundException;
 import java.sql.Connection;
-import java.util.UUID;
 
 /**
  * A class that handles the register requests
