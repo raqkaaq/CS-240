@@ -24,7 +24,9 @@ public class RegisterHandler implements HttpHandler {
                 Reader read = new InputStreamReader(exchange.getRequestBody()); //read register data
                 RegisterRequest req = Decode.decodeRegisterRequest(read); //decode register data
                 RegisterService serv = new RegisterService(req);
-                serv.registerRun(); //generate register family tree
+                if(serv.isRegisterSuccess()) {
+                    serv.registerRun(); //generate register family tree
+                }
                 res = serv.post();
             }
             if(res.getSuccess()){

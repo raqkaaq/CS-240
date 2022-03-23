@@ -4,16 +4,20 @@ import Handler.*;
 import com.sun.net.httpserver.HttpServer;
 
 import java.io.IOException;
+import java.net.Inet4Address;
+import java.net.InetAddress;
 import java.net.InetSocketAddress;
+import java.net.UnknownHostException;
 
 public class Server {
     private static final int MAX_WAITING_CONNECTIONS = 12;
     private HttpServer server;
-    private void run(String portNumber){
+    private void run(String portNumber) {
         System.out.println("Initializing HTTP Server");
         try{
+            InetAddress ip = InetAddress.getLocalHost();
             server = HttpServer.create(
-                    new InetSocketAddress(Integer.parseInt(portNumber)),
+                    new InetSocketAddress(ip, Integer.parseInt(portNumber)),
                     MAX_WAITING_CONNECTIONS);
         } catch (IOException e) {
             e.printStackTrace();
@@ -34,6 +38,12 @@ public class Server {
         System.out.println("Starting server");
         server.start();
         System.out.println("Server started on port " + portNumber);
+        try {
+            System.out.println("Server ip " + Inet4Address.getLocalHost());
+        } catch (UnknownHostException e){
+            e.printStackTrace();
+            return;
+        }
     }
     public static void main(String[] args){
         String portNumber = args[0];
