@@ -79,7 +79,7 @@ public class UserDAO {
 
             stmt.executeUpdate();
         } catch (SQLException e) {
-            throw new DataAccessException("error: Invalid entry, could not reregister the user");
+            throw new DataAccessException("error: User already exists");
         }
     }
 

@@ -26,13 +26,14 @@ public class RegisterService {
     UserDAO ud;
     PersonDAO pd;
     EventDAO ed;
-
+    boolean registerSuccess;
     /**
      * A constructor that takes a register request
      * @param req a register request
      */
     public RegisterService(RegisterRequest req) throws DataAccessException {
         this.req = req;
+        registerSuccess = true;
         db = new Database();
         try{
             conn = ServicePack.createConnection(db);
@@ -46,6 +47,8 @@ public class RegisterService {
             ServicePack.closeConnection(db, true);
         } catch (DataAccessException e) {
             ServicePack.closeConnection(db, false);
+            registerSuccess = false;
+            register = new RegisterResult(e.getMessage());
         }
     }
 
@@ -105,5 +108,13 @@ public class RegisterService {
 
     public RegisterResult getRegister() {
         return register;
+    }
+
+    public boolean isRegisterSuccess() {
+        return registerSuccess;
+    }
+
+    public void setRegisterSuccess(boolean registerSuccess) {
+        this.registerSuccess = registerSuccess;
     }
 }

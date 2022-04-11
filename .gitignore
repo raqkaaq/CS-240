@@ -4,3 +4,4 @@ FamilyMapServer/FMS_Passoff.log
 FamilyMapServer/database/FamilyMap.db
 FamilyMapServer/database/FamilyMap.db
 *.db
+*.db
