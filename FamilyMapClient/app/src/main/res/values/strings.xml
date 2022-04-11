@@ -1,0 +1,69 @@
+<resources>
+    <string name="app_name">Family Map</string>
+    <string name="sign_in">Sign In</string>
+    <string name="register">Register</string>
+    <string name="server_host">Server Host:</string>
+    <string name="server_host_auto">127.0.0.1</string>
+    <string name="server_port">Server Port:</string>
+    <string name="server_port_auto">8080</string>
+    <string name="default_server">Default Server:</string>
+    <string name="default_value">Default</string>
+    <string name="default_host">192.168.86.22</string>
+    <string name="default_port">8080</string>
+    <string name="user_name">User Name:</string>
+    <string name="user_name_auto">strangefred</string>
+    <string name="password">Password:</string>
+    <string name="password_auto">password</string>
+    <string name="first_name">First Name:</string>
+    <string name="first_name_auto">Fred</string>
+    <string name="last_name">Last Name:</string>
+    <string name="last_name_auto">Strange</string>
+    <string name="email">Email:</string>
+    <string name="email_auto">fredstrange@gmail.com</string>
+    <string name="gender">Gender:</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+    <string name="help">Help</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_map_fragment">MapFragment</string>
+    <string name="title_activity_settings">SettingsActivity</string>
+
+    <!-- Preference Titles -->
+    <string name="messages_header">Messages</string>
+    <string name="sync_header">Sync</string>
+
+    <!-- Messages Preferences -->
+    <string name="signature_title">Your signature</string>
+    <string name="reply_title">Default reply action</string>
+
+    <!-- Sync Preferences -->
+    <string name="sync_title">Sync email periodically</string>
+    <string name="attachment_title">Download incoming attachments</string>
+    <string name="attachment_summary_on">Automatically download attachments for incoming emails
+    </string>
+    <string name="attachment_summary_off">Only download attachments when manually requested</string>
+    <string name="life_lines">Life Story Lines</string>
+    <string name="show_life_story_lines">Show Life Story Lines</string>
+    <string name="family_tree_lines">Family Tree Lines</string>
+    <string name="show_family_tree_lines">Show Family Tree Lines</string>
+    <string name="spouse_lines">Spouse Lines</string>
+    <string name="show_spouse_lines">Show Spouse Lines</string>
+    <string name="father_side">Show Father\'s Side</string>
+    <string name="father_side_of_family">Filter by Father\'s Side of Family</string>
+    <string name="mother_s_side">Mother\'s Side</string>
+    <string name="mother_side">Mother\'s Side</string>
+    <string name="mother_side_of_family">Filter By Mother\'s Side of Family</string>
+    <string name="male_events">Show male Events</string>
+    <string name="filter_events_based_on_gender">Filter Events Based on Gender</string>
+    <string name="female_events">Female Events</string>
+    <string name="logout">Logout</string>
+    <string name="loginScreen">Return to Login</string>
+    <string name="m">M</string>
+    <string name="f">F</string>
+    <string name="person_first_name" />
+    <string name="person_last_name" />
+    <string name="person_gender" />
+    <string name="name">\"\"</string>
+    <string name="title">\"\"</string>
+    <string name="main_title" />
+</resources>

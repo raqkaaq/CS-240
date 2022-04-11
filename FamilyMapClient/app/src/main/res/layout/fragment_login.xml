@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/loginFragment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LoginFragment">
+
+    <TableLayout
+        android:id="@+id/LoginTable"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="20dp"
+        android:gravity="top"
+        android:orientation="vertical"
+        android:shrinkColumns="*"
+        app:layout_constraintBottom_toTopOf="@+id/LoginLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TableRow
+            android:id="@+id/ServerHostRow"
+            android:layout_width="match_parent"
+            android:layout_height="85dp">
+
+            <TextView
+                android:id="@+id/ServerHost"
+                android:layout_width="164dp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="30dp"
+                android:gravity="end"
+                android:text="@string/server_host"
+                android:textSize="24sp" />
+
+            <EditText
+                android:id="@+id/editServerHost"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="30dp"
+                android:autofillHints="@string/server_host_auto"
+                android:ems="10"
+                android:hint="@string/server_host_auto"
+                android:inputType="text"
+                tools:ignore="TextContrastCheck,TextContrastCheck,TouchTargetSizeCheck" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/ServerPortRow"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/ServerPort"
+                android:layout_width="148dp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="30dp"
+                android:gravity="end"
+                android:text="@string/server_port"
+                android:textSize="24sp" />
+
+            <EditText
+                android:id="@+id/editServerPort"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="30dp"
+                android:autofillHints="@string/server_port_auto"
+                android:ems="10"
+                android:hint="@string/server_port_auto"
+                android:inputType="text"
+                tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck,TextContrastCheck,TextContrastCheck,TextContrastCheck" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/UseDefaultServerRow"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/DefaultServer"
+                android:layout_width="186dp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="10dp"
+                android:gravity="end"
+                android:text="@string/default_server"
+                android:textSize="24sp" />
+
+            <Button
+                android:id="@+id/DefaultButton"
+                android:layout_width="120dp"
+                android:layout_height="48dp"
+                android:layout_marginEnd="30dp"
+                android:layout_weight="1"
+                android:text="@string/default_value"
+                tools:ignore="ButtonStyle,TextContrastCheck" />
+
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/UsernameRow"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/Username"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="30dp"
+                android:gravity="end"
+                android:text="@string/user_name"
+                android:textSize="24sp" />
+
+            <EditText
+                android:id="@+id/editUsername"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="30dp"
+                android:autofillHints="@string/user_name_auto"
+                android:ems="10"
+                android:hint="@string/user_name_auto"
+                android:inputType="text"
+                tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck,TextContrastCheck,TextContrastCheck" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/PasswordRow"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/Password"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="30dp"
+                android:gravity="end"
+                android:text="@string/password"
+                android:textSize="24sp" />
+
+            <EditText
+                android:id="@+id/editPassword"
+                android:layout_width="328dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="30dp"
+                android:autofillHints="@string/password_auto"
+                android:ems="10"
+                android:hint="@string/password_auto"
+                android:inputType="textPassword"
+                tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck,TextContrastCheck" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/FirstNameRow"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/FirstName"
+                android:layout_width="328dp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="30dp"
+                android:gravity="end"
+                android:text="@string/first_name"
+                android:textSize="24sp" />
+
+            <EditText
+                android:id="@+id/editFirstName"
+                android:layout_width="303dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="30dp"
+                android:autofillHints="@string/password_auto"
+                android:ems="10"
+                android:hint="@string/first_name_auto"
+                android:inputType="text"
+                tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck,TextContrastCheck,TextContrastCheck" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/LastNameRow"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/LastName"
+                android:layout_width="163dp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="30dp"
+                android:gravity="end"
+                android:text="@string/last_name"
+                android:textSize="24sp" />
+
+            <EditText
+                android:id="@+id/editLastName"
+                android:layout_width="396dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="30dp"
+                android:autofillHints="@string/password_auto"
+                android:ems="10"
+                android:hint="@string/last_name_auto"
+                android:inputType="text"
+                tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck,TextContrastCheck" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/EmailRow"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/Email"
+                android:layout_width="179dp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="30dp"
+                android:gravity="end"
+                android:text="@string/email"
+                android:textSize="24sp" />
+
+            <EditText
+                android:id="@+id/editEmail"
+                android:layout_width="261dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="30dp"
+                android:autofillHints="@string/password_auto"
+                android:ems="10"
+                android:hint="@string/email_auto"
+                android:inputType="textEmailAddress"
+                tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck,TextContrastCheck" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/GenderRow"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/Gender"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="30dp"
+                android:gravity="end"
+                android:text="@string/gender"
+                android:textSize="24sp" />
+
+            <RadioGroup
+                android:id="@+id/radioGender"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/radioMale"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="20dp"
+                    android:text="@string/male" />
+
+                <RadioButton
+                    android:id="@+id/radioFemale"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/female" />
+            </RadioGroup>
+        </TableRow>
+
+
+    </TableLayout>
+
+
+    <LinearLayout
+        android:id="@+id/LoginLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="131dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/LoginTable">
+
+        <Button
+            android:id="@+id/SignIn"
+            android:layout_width="120dp"
+            android:layout_height="48dp"
+            android:layout_marginEnd="20dp"
+            android:layout_weight="1"
+            android:text="@string/sign_in"
+            tools:ignore="ButtonStyle,TextContrastCheck" />
+
+        <Button
+            android:id="@+id/Register"
+            android:layout_width="120dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="20dp"
+            android:layout_weight="1"
+            android:text="@string/register"
+            tools:ignore="ButtonStyle,TextContrastCheck" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
